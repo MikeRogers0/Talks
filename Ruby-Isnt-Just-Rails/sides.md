@@ -45,7 +45,7 @@ https://mikerogers.io/
 
 ---
 
-# Sonic PI
+# Sonic PI
 
 Make music with Ruby!
 
