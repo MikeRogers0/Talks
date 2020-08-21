@@ -1,0 +1,17 @@
+{
+  "name": "talks",
+  "private": true,
+  "dependencies": {
+    "@marp-team/marp-cli": "^0.21.0",
+    "@marp-team/marpit": "^1.6.2",
+    "markdown-it-highlight-lines": "^1.0.2"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "@marp-team/marp-core": "^1.3.0",
+    "markdown-it-mark": "^3.0.0"
+  },
+  "scripts": {
+    "start": "npx @marp-team/marp-cli --theme custom-theme.css --engine ./engine.js -s -w ."
+  }
+}

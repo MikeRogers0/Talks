@@ -1,8 +1,5 @@
 ---
-theme: gaia
-_class: lead
 paginate: true
-enableHTML: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.jpg')
 title: An Introduction To Stimulus.js
@@ -53,8 +50,12 @@ Story is they wanted a way to organise their JavaScript, but didn't like SPA. St
 
 <div style="display: grid; grid-template-columns: 40% 60%; column-gap: 1rem; row-gap: 1rem; font-size: 1.2rem;">
 <div>
+</div>
+<div>
+</div>
+</div>
 
-```html{2}
+```html {1,2,4-5}
 <!-- index.html -->
 <div data-controller="counter">
   <span data-target="counter.output"></span>
@@ -63,12 +64,9 @@ Story is they wanted a way to organise their JavaScript, but didn't like SPA. St
   </button>
 </div>
 ```
-</div>
-<div>
 
 ```javascript
 // counter_controller.js
-
 import { Controller } from "stimulus"
 
 export default class extends Controller {
@@ -92,8 +90,6 @@ export default class extends Controller {
   }
 };
 ```
-</div>
-</div>
 
 ---
 
