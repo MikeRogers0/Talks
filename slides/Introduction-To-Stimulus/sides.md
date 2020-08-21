@@ -50,12 +50,8 @@ Story is they wanted a way to organise their JavaScript, but didn't like SPA. St
 
 <div style="display: grid; grid-template-columns: 40% 60%; column-gap: 1rem; row-gap: 1rem; font-size: 1.2rem;">
 <div>
-</div>
-<div>
-</div>
-</div>
 
-```html {1,2,4-5}
+```html {2}
 <!-- index.html -->
 <div data-controller="counter">
   <span data-target="counter.output"></span>
@@ -65,7 +61,10 @@ Story is they wanted a way to organise their JavaScript, but didn't like SPA. St
 </div>
 ```
 
-```javascript
+</div>
+<div>
+
+```javascript {2}
 // counter_controller.js
 import { Controller } from "stimulus"
 
@@ -90,6 +89,9 @@ export default class extends Controller {
   }
 };
 ```
+
+</div>
+</div>
 
 ---
 

@@ -1,3 +1,6 @@
+inputDir: ./slides
+output: ./public
+themeSet: ./themes
 allowLocalFiles: true
 options:
   markdown:
