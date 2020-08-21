@@ -1,0 +1,4 @@
+allowLocalFiles: true
+options:
+  markdown:
+    html: true
