@@ -346,10 +346,6 @@ export default class extends Controller {
 
 ---
 
-# Blank Element
-
----
-
 # How can we set it up in Rails!
 
 ```bash
@@ -357,3 +353,18 @@ $ bundle add webpacker
 $ bundle
 $ bundle exec rails webpacker:install:stimulus
 ```
+
+---
+
+# How can we set it up in Rails!
+
+- Demo the files
+
+---
+
+# When is it useful?
+
+- When react is to much
+- Super good for replacing jQuery.
+
+---
