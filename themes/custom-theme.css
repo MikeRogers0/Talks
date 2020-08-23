@@ -8,15 +8,16 @@
 
 @import 'gaia';
 
-pre, pre[class*="language-"] {
-  white-space: pre-wrap;
-  word-break: break-word;
+body, #p {
+  background-color: #000;
+}
+
+pre, code[class*="language-"] {
   color: white;
-  overflow: auto;
 }
 
 .highlighted-line {
   background-color: #14161a66;
   display: block;
-  padding: 0.10rem;
+  font-size: 1em;
 }
