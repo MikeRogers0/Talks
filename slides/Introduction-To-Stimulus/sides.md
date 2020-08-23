@@ -97,8 +97,9 @@ Not to unapproachable
 
 # What does it look like?
 
-<div style="display: grid; grid-template-columns: 40% 60%; column-gap: 1rem; row-gap: 1rem; font-size: 1.2rem;">
-<div>
+<div style="display: grid; grid-template-columns: 40% 60%; grid-template-rows: repeat(2, 1fr); column-gap: 1rem; row-gap: 1rem; font-size: 1.2rem;">
+
+<div style="grid-area: 1 / 1 / 2 / 2;">
 
 ```html
 <!-- index.html -->
@@ -111,7 +112,51 @@ Not to unapproachable
 ```
 
 </div>
-<div>
+<div style="grid-area: 2 / 1 / 3 / 2; ">
+  <div data-controller="counter">
+    <span data-target="counter.output">12</span>
+    <button data-action="click->counter#addOne">
+      Add One
+    </button>
+  </div>
+
+  <script src="https://unpkg.com/stimulus@1.1.1/dist/stimulus.umd.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  const application = Stimulus.Application.start();
+
+  class CounterController extends Stimulus.Controller {
+    static get targets() {
+      return ["output"];
+    }
+    
+    // Called when Stimulus create an instance of the
+    // CounterController class.
+    initialize(){
+      this.clickCount = 0
+    }
+    
+    // Called when the class is connected to the HTML element.
+    connect(){
+      this._updateOutput();
+    }
+
+    // Called via:
+    // data-action="click->counter#addOne"
+    addOne() {
+      this.clickCount++;
+      this._updateOutput();
+    }
+    
+    _updateOutput() {
+      this.outputTarget.innerText = `You've clicked ${this.clickCount} times`
+    }
+  };
+
+  application.register("counter", CounterController);
+  </script>
+
+</div>
+<div style="grid-area: 1 / 2 / 3 / 3;">
 
 ```javascript
 // counter_controller.js
@@ -299,6 +344,9 @@ export default class extends Controller {
 </div>
 </div>
 
+---
+
+# Blank Element
 
 ---
 
