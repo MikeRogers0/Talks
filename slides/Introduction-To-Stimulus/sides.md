@@ -39,6 +39,7 @@ _class: prose
 
   application.register("counter", CounterController);
 </script>
+
 <!-- _class: lead -->
 
 <img src="/Introduction-To-Stimulus/images/stimulus.svg" width="100" height="100" style="margin: 0 auto;" />
@@ -48,29 +49,21 @@ _class: prose
 What is it & when is it useful?
 
 ---
+<!-- _class: lead -->
 <!--
-_class: lead
 Online I go by @MikeRogers0, normally I have a fairly dull setup which is a pretty enjoyable way to work.
 -->
 
-# Who am I?
+# Before I start
 
-I'm Mike Rogers! Here is my normal stack:
-
-<div style="display: flex; justify-content: space-around; align-items: center; font-size: 1.2rem; margin-top: 5rem;">
-  <img src="/Introduction-To-Stimulus/images/ruby-on-rails.svg" width="200" height="100" />
-  <img src="/Introduction-To-Stimulus/images/stimulus.svg" width="100" height="100" />
-  <img src="/Introduction-To-Stimulus/images/docker-icon.svg" width="200" height="125" />
-</div>
-<div style="display: flex; justify-content: space-around; align-items: center; font-size: 1.2rem; margin-top: 2rem;">
-  <img src="/Introduction-To-Stimulus/images/sidekiq-logo-png-transparent.png" width="100" height="100" />
-  <img src="/Introduction-To-Stimulus/images/heroku-logo-stroke-purple.svg" width="100" height="100" />
-  <img src="/Introduction-To-Stimulus/images/postgresql.png" width="100" height="100" />
+<div style="display: flex; justify-content: space-around; align-items: center; font-size: 1.2rem; margin-top: 10rem; margin-bottom: 5rem;">
+  <img src="/assets/images/youtube-like.svg" height="100" />
+  <img src="/assets/images/youtube-subscribe.png" height="100" />
 </div>
 
 ---
+<!-- _class: lead -->
 <!--
-_class: lead
 - Here is what I'm aiming to cover
 - The idea of this talk is give you an idea of the use cases where it's useful, what it's best for
 - But also where it's not the best choice.
@@ -86,8 +79,8 @@ _class: lead
 The outcome should be you'll confident enough to give Stimulus a try & know about where it's useful.
 
 ---
+<!-- _class: lead -->
 <!--
-_class: lead
 We didn't have many options.
 Single Page Applications were out there, but in their infancy, along with understanding of progressive enhancement.
 
@@ -105,8 +98,8 @@ When Ruby On Rails first started, our options were limited.
 </div>
 
 ---
+<!-- _class: lead -->
 <!--
-_class: lead
 React & Vue took off, they solved a lot of problems.
 But they also added an additional moving part of our apps we could potentially avoid.
 -->
@@ -121,8 +114,8 @@ Then we ended up with libraries which favoured rendering on the client side.
 </div>
 
 ---
+<!-- _class: lead -->
 <!--
-_class: lead
 Not to mention added some new problems HTML kind of solved.
 
 I really wanted to just get back to sending HTML to users, with a bit of JavaScript to jazz it up.
@@ -130,13 +123,14 @@ I really wanted to just get back to sending HTML to users, with a bit of JavaScr
 
 # Where does Stimulus Come From?
 
-<div align="center" style="margin-top: 5rem;">
+<div align="center" style="margin-top: 2.5rem;">
 
 [![HTML is faster then React](/Introduction-To-Stimulus/images/zachleat-html-is-fast.png)](https://twitter.com/zachleat/status/1169998370041208832)
 
 </div>
 
 ---
+<!-- _class: lead -->
 <!--
 The story:
 
@@ -153,6 +147,7 @@ The story:
 - Current version is v1.1.1
 
 ---
+<!-- _class: lead -->
 <!--
 Then it was added to Rails.
 -->
@@ -176,7 +171,7 @@ webpacker:install:typescript  Installs Typescript loader with an example
 
 ---
 <!--
-Not to unapproachable
+Not to unapproachable!
 -->
 
 # What does it look like?
@@ -329,7 +324,7 @@ Targets: You can follow the breadcrumb hints as to what might end up being used 
 </div>
 <div style="grid-area: 1 / 2 / 3 / 3;">
 
-```javascript {5}
+```javascript {5,21}
 // counter_controller.js
 import { Controller } from "stimulus"
 
@@ -361,6 +356,8 @@ export default class extends Controller {
 ---
 <!--
 Actions: Again, you can follow the breadcrumbs & it's easy.
+
+>> Click the button on this one <<
 -->
 
 # What does it look like?
