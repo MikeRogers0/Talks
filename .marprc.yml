@@ -5,3 +5,6 @@ allowLocalFiles: true
 options:
   markdown:
     html: true
+bespoke:
+  osc: false
+  progress: false

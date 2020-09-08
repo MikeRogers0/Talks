@@ -72,7 +72,7 @@ Online I go by @MikeRogers0, normally I have a fairly dull setup which is a pret
 # What we'll cover
 
 - Where does Stimulus Come From?
-- What does it look like?
+- What does the code look like?
 - When is it useful?
 - How can we set it up in Rails!
 
