@@ -57,8 +57,8 @@ Online I go by @MikeRogers0, normally I have a fairly dull setup which is a pret
 # Before I start
 
 <div style="display: flex; justify-content: space-around; align-items: center; font-size: 1.2rem; margin-top: 10rem; margin-bottom: 5rem;">
-  <img src="/assets/images/youtube-like.svg" height="100" />
-  <img src="/assets/images/youtube-subscribe.png" height="100" />
+  <img src="/assets/images/youtube-like.svg" height="100" class="wiggle" />
+  <img src="/assets/images/youtube-subscribe.png" height="100" class="wiggle" />
 </div>
 
 ---
