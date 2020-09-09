@@ -72,7 +72,7 @@ Online I go by @MikeRogers0, normally I have a fairly dull setup which is a pret
 # What we'll cover
 
 - Where does Stimulus Come From?
-- What does the code look like?
+- What does it look like?
 - When is it useful?
 - How can we set it up in Rails!
 
@@ -446,9 +446,66 @@ $ bundle exec rails webpacker:install:stimulus
 ```
 
 ---
+# How can we set it up in Rails!
+
+```text
+Appending Stimulus setup code to /usr/src/app/app/javascript/packs/application.js
+      append  app/javascript/packs/application.js
+Creating controllers directory
+      create  app/javascript/controllers
+      create  app/javascript/controllers/hello_controller.js
+      create  app/javascript/controllers/index.js
+Installing all Stimulus dependencies
+         run  yarn add stimulus from "."
+info Direct dependencies
+└─ stimulus@1.1.1
+Done in 14.14s.
+Webpacker now supports Stimulus.js 🎉
+```
+
+---
+# How can we set it up in Rails!
+
+```text {7,8,9,11}
+▾ app/
+  ▸ assets/
+  ▸ channels/
+  ▸ controllers/
+  ▾ javascript/
+    ▸ channels/
+    ▾ controllers/
+        hello_controller.js
+        index.js
+    ▾ packs/
+        application.js
+  ▸ models/
+  ▸ views/
+```
+
+---
+# How can we set it up in Rails!
+
+```text {8}
+▾ app/
+  ▸ assets/
+  ▸ channels/
+  ▸ controllers/
+  ▾ javascript/
+    ▸ channels/
+    ▾ controllers/
+        hello_controller.js
+        index.js
+    ▾ packs/
+        application.js
+  ▸ models/
+  ▸ views/
+```
+
+---
 <!-- _class: lead -->
 
 
 # Questions?
 
+[MikeRogers.io](https://mikerogers.io/)
 @MikeRogers0 on Twitter
