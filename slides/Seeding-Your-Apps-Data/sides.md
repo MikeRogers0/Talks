@@ -23,7 +23,6 @@ We're going through stuff!
 - Are they just for Development environments?
 - Horror Stories on Why Seeds are Useful
 - Approaches to seeding
-- Ways to make it easy!
 
 ---
 <!-- _class: lead -->
@@ -173,15 +172,18 @@ The poor initial developer experience
 
 ---
 <!--
+Don't use this approach
 -->
 
 # What about fixtures & factories?
 
 There is a command `rails db:fixtures:load FIXTURES=users,posts`, it will load fixtures into your development environment.
 
-Kind of rare, though I understand it's unreliable around foreign keys. But I like how this will give your tests good objects to test against.
+You could also loop through your Factories, but ThoughtBot doesn't recommend doing it as it has a lot of short comings.
 
-You can loop through factories.
+Generally this approach isn't used as, 
+
+<!-- footer: https://thoughtbot.com/blog/factory_girl-for-seed-data -->
 
 ---
 <!--
@@ -192,3 +194,11 @@ You can loop through factories.
 https://github.com/sunitparekh/data-anonymization
 https://github.com/DivanteLtd/anonymizer
 https://github.com/evilmartians/evil-seed
+
+---
+<!--
+-->
+
+# So what is the best way?
+
+A bit of everything I think
