@@ -20,9 +20,9 @@ We're going through stuff!
 # What we'll cover
 
 - What are seeds?
-  - Using them in both Dev/Production :D
+- Are they just for Development environments?
 - Horror Stories on Why Seeds are Useful
-- Approaches to seeds
+- Approaches to seeding
 - Ways to make it easy!
 
 ---
@@ -51,6 +51,8 @@ Out of the box, Rails stores them in the `db/seeds.rb` file. They're added to yo
 ---
 <!--
 The default sample sucks so hard.
+
+It can't comfortably be run multiple times & doesn't allow for if the data has changed in the DB since seeding.
 -->
 
 # What are seeds?
@@ -85,7 +87,9 @@ end if Rails.env.development?
 ```
 ---
 <!--
-Maybe you'll also get this
+Maybe you'll also get this, or just a blank file.
+
+They we're made years ago & were to much of a hassle to keep up to date.
 -->
 
 # What are seeds?
@@ -95,9 +99,96 @@ Normally they'd probably look a bit more like:
 ```ruby
 # db/seeds.rb
 
-User.find_or_create_by!(email: 'admin@example.com') do |user|
-  user.password = "12345678"
-  user.password_confirmation = "12345678"
-end if Rails.env.development?
+# Last updated 10 years ago - DON'T USE RUN IN PRODUCTION
+TaxRate.find_or_create_by!(origin: 'NL', destination: 'GB') do |tax_rate|
+  tax_rate.amount = "1.10"
+end
 ```
 ---
+<!-- _class: lead -->
+<!--
+Normally that's where it's only used.
+
+Preview Environments sometimes have a set of seeds to help demo the environment.
+
+If something if the same, don't put it in the DB, use a PORO or something.
+-->
+
+# Are they just for Development environments?
+
+You can use them in all environments (Test, Development, Preview & Production).
+
+Though if something is the same between all environments, it probably doesn't belong in the Database.
+
+---
+<!-- _class: lead -->
+<!--
+First story: Dev given production copy of production DB. Laptop was stolen.
+-->
+
+# Horror Stories on Why Seeds are Useful
+
+The stolen laptop
+
+---
+<!-- _class: lead -->
+<!--
+Second story: Preview Environment used real data. It then emailed all the users.
+-->
+
+# Horror Stories on Why Seeds are Useful
+
+Preview Environment started emailing real users
+
+---
+<!-- _class: lead -->
+<!--
+Last Story: Don't make devs jump through hoops to have a decent environment.
+-->
+
+# Horror Stories on Why Seeds are Useful
+
+The poor initial developer experience
+
+---
+<!--
+-->
+
+# Approaches to seeding
+
+- Explicitly defined seeds - `db/seeds.rb` & similar approaches
+- What about fixtures & factories?
+- A shared anonymised version of the production DB
+
+---
+<!--
+-->
+
+# Explicitly defined seeds
+
+- `db/seeds.rb` & `rails db:seed`/`rails db:seed:replant` - Can get messy quickly, multiple seed files helps.
+- https://github.com/rroblak/seed_dump - Dump your existing DB into seeds
+- https://github.com/mbleigh/seed-fu - Kind of a nice structured approach
+- https://github.com/james2m/seedbank - Super when things needs to be done in a specific order.
+
+---
+<!--
+-->
+
+# What about fixtures & factories?
+
+There is a command `rails db:fixtures:load FIXTURES=users,posts`, it will load fixtures into your development environment.
+
+Kind of rare, though I understand it's unreliable around foreign keys. But I like how this will give your tests good objects to test against.
+
+You can loop through factories.
+
+---
+<!--
+-->
+
+# A shared anonymised version of the production DB
+
+https://github.com/sunitparekh/data-anonymization
+https://github.com/DivanteLtd/anonymizer
+https://github.com/evilmartians/evil-seed
