@@ -2,12 +2,12 @@
 paginate: true
 theme: custom-theme
 size: 16:9
-title: Seeding your Apps Data
+title: Seeding Data In Ruby On Rails
 _class: prose
 ---
 <!-- _class: lead -->
 
-# Seeding Data in Ruby On Rails
+# Seeding Data In Ruby On Rails
 
 Rails seeds are very powerful
 
@@ -20,7 +20,6 @@ Rails seeds are very powerful
 - Horror Stories On Why Seeds Are Useful
 - Approaches To Seeding
 - Testing Seeds
-- What Is The Best Way?
 
 ---
 <!-- _class: lead -->
@@ -175,7 +174,7 @@ The poor initial developer experience
 - Explicitly Defined Seeds
 - Faker Generated Seeds
 - Fixtures & Factories Generated Seeds
-- Anonymised Versions of Production Database
+- Anonymised Production Database
 - Plain Old Ruby Objects
 
 ---
@@ -184,10 +183,41 @@ The poor initial developer experience
 
 # Explicitly Defined Seeds
 
-- `db/seeds.rb` & `rails db:seed`/`rails db:seed:replant` - Can get messy quickly, multiple seed files helps.
-- https://github.com/rroblak/seed_dump - Dump your existing DB into seeds
-- https://github.com/mbleigh/seed-fu - Kind of a nice structured approach
-- https://github.com/james2m/seedbank - Super when things needs to be done in a specific order.
+These are the ones you'd find in you `db/seeds.rb` file.
+
+The files can become very big pretty fast. I've seen them broken up into smaller files before:
+
+```ruby
+# db/seeds.rb
+# Load all the files in db/seeds folder
+Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
+  load seed
+end
+```
+
+---
+<!--
+Though hasn't been updated in a while
+-->
+
+# Explicitly Defined Seeds
+
+https://github.com/james2m/seedbank
+
+Gives you more fine grain control of the order your seeds are run:
+
+```ruby
+# db/seeds/companies.seeds.rb
+Company.find_or_create_by_name('Hatch')
+```
+
+```ruby
+# db/seeds/projects.seeds.rb
+after :companies do
+  company = Company.find_by_name('Hatch')
+  company.projects.create(title: 'Seedbank')
+end
+```
 
 ---
 <!--
@@ -231,25 +261,39 @@ end if ENV['DURING_RELEASE_SEED_USER'] || Rails.env.development?
 ---
 <!-- footer: https://thoughtbot.com/blog/factory_girl-for-seed-data -->
 <!--
-Don't use this approach
+Don't use this approach. You might have problems with foreign keys
 -->
 
-# Fixtures & factories generated seeds
+# Fixtures & Factories Generated Seeds
 
-There is a command `rails db:fixtures:load FIXTURES=users,posts`, it will load fixtures into your development environment.
+There is a command `rails db:fixtures:load FIXTURES=users,posts`, it will load fixtures into your current environment.
 
-You could also loop through your Factories, but ThoughtBot doesn't recommend doing it as it has a lot of short comings.
+You could also loop through your Factories, but ThoughtBot doesn't recommend doing it (it has a lot of short comings).
+
+_I've not seen this approach used in the wild._
 
 ---
 <!-- footer: "" -->
 <!--
 -->
 
-# Anonymised Versions of Production Database
+# Anonymised Production Database
 
-https://github.com/sunitparekh/data-anonymization
-https://github.com/DivanteLtd/anonymizer
 https://github.com/evilmartians/evil-seed
+
+```
+require 'evil_seed'
+EvilSeed.configure do |config|
+  config.root('User', 'created_at > ?', Time.current.beginning_of_day)
+
+  config.anonymize("User")
+    name  { Faker::Name.name }
+    email { Faker::Internet.email }
+  end
+end 
+
+EvilSeed.dump('path/to/new_dump.sql')
+```
 
 ---
 <!--
@@ -278,7 +322,7 @@ end
 
 ---
 <!--
-What if you don't put it in the database at all?
+This is fine & my favourite thing to do.
 -->
 
 # Plain Old Ruby Objects
@@ -327,4 +371,13 @@ end
 - You should be able to run `rails db:seed` multiple times without fear.
 - Use them in a preview environment! You'll be more incentivised to keep them up to date.
 - Plain Old Ruby Objects for data that needs to be consistent across all environments.
-- Use partial dumps to investigate exceptions more closely.
+- Use partial dumps of production to investigate exceptions more closely.
+
+---
+<!-- _class: lead -->
+
+
+# Questions?
+
+[MikeRogers.io](https://mikerogers.io/)
+@MikeRogers0 on Twitter
