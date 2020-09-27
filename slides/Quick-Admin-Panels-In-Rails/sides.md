@@ -52,10 +52,9 @@ Make sure to use an AdminUser
 Add to Gemfile:
 
 ```bash
-rails generate devise AdminUser
+bundle add devise
 bundle add activeadmin
 rails generate active_admin:install --use_webpacker
-rails generate active_admin:webpacker
 ```
 
 ---
