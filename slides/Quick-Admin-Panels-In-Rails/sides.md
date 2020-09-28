@@ -2,7 +2,7 @@
 paginate: true
 theme: custom-theme
 size: 16:9
-title: Quick Admin Panels In Rails
+title: Building an Admin Panel In Rails
 _class: prose
 ---
 <!-- _class: lead -->
@@ -144,7 +144,7 @@ end
 
 ```ruby
 ActiveAdmin.register Post do
- member_action :publish, method: :put do
+  member_action :publish, method: :put do
     resource.publish!
     redirect_to resource_path, notice: "Published!"
   end
@@ -175,10 +175,32 @@ end
 
 ---
 
+# Customising Show view
+
+```ruby
+ActiveAdmin.register Post do
+  show do
+    attributes_table do
+      row :title
+      row :body
+      row :author
+      row :created_at
+      row :updated_at
+      row :published_at
+      row :categories
+    end
+    active_admin_comments
+  end
+end
+```
+
+---
+
 # Using a decorator
 
 ```bash
 $ bundle add draper
+$ rails generate draper:install
 ```
 
 ```ruby
