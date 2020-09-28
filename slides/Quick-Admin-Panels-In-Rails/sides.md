@@ -2,12 +2,12 @@
 paginate: true
 theme: custom-theme
 size: 16:9
-title: Building an Admin Panel In Rails
+title: Easy Admin Panels In Rails
 _class: prose
 ---
 <!-- _class: lead -->
 
-# Quick Admin Panels In Rails
+# Easy Admin Panels In Rails
 
 Using Devise & ActiveAdmin 
 
@@ -201,6 +201,7 @@ end
 ```bash
 $ bundle add draper
 $ rails generate draper:install
+$ rails generate decorator Post
 ```
 
 ```ruby
