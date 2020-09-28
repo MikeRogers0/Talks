@@ -261,6 +261,7 @@ Filter with strings, not selects
 
 - https://github.com/activeadmin/activeadmin
 - https://activeadmin.info/index.html
+- https://github.com/drapergem/draper
 
 ---
 
