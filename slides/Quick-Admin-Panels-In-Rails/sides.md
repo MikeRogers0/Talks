@@ -2,14 +2,14 @@
 paginate: true
 theme: custom-theme
 size: 16:9
-title: Easy Admin Panels In Rails
+title: Admin Panels In Ruby On Rails
 _class: prose
 ---
 <!-- _class: lead -->
 
-# Easy Admin Panels In Rails
+# Admin Panels In Ruby On Rails
 
-Using Devise & ActiveAdmin 
+Using Devise & ActiveAdmin
 
 ---
 <!-- _class: lead -->
@@ -116,6 +116,7 @@ ActiveAdmin.register Post do
     selectable_column
     column :id
     column :title
+    column :published?
     column :author
     column :created_at
     actions
