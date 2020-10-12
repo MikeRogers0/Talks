@@ -21,11 +21,16 @@ So much less code
 
 # What Are We Trying To Solve?
 
-The default form builder is really verbose, let's take a look:
+The default form builder requires a lot of writing, let's take a look:
 
 ```
-$ rails g scaffold Pet name:string last_pet_at:datetime email:string fluffy:boolean colour:string owner:references
+$ rails g scaffold Pet name:string last_hugged_at:datetime email:string fluffy:boolean colour:string owner:references
 ```
+
+- Out of the box the default form builder
+- Got to output the label & field serperatly - so easy to forget
+- It's requires saying the field types
+- because you've got to write more, it more risk of implimenting an inconsistent design
 
 ---
 
@@ -34,7 +39,7 @@ $ rails g scaffold Pet name:string last_pet_at:datetime email:string fluffy:bool
 ```
 $ bundle add simple_form
 $ rails generate simple_form:install
-$ rails g scaffold Pet name:string last_pet_at:datetime email:string fluffy:boolean colour:string owner:references
+$ rails g scaffold Pet name:string last_hugged_at:datetime email:string fluffy:boolean colour:string owner:references
 ```
 
 Same form is now a bit less - that's nice, we like that.
@@ -46,6 +51,15 @@ Same form is now a bit less - that's nice, we like that.
 - Let's make fields required
 - Let's make a dropdown
 - We can add placeholders, errors, hints (strings, then I18n)
+
+```
+<%= f.input :colour, collection: @pet.class.colours.keys %>
+  enum colour: {
+    red: 'red',
+    blue: 'blue',
+    ginger: 'ginger'
+  }
+```
 
 ---
 
@@ -62,8 +76,10 @@ $ rails generate simple_form:install --bootstrap
 How to change a form & how to do it globally
 
 ```
-simple_form_for @user, wrapper: :something
+<%= simple_form_for(@pet, wrapper: :horizontal_form) do |f| %>
 ```
+
+You could potentially make one of these using Tailwind classes.
 
 ---
 <!--
