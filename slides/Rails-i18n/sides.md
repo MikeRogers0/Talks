@@ -23,26 +23,54 @@ Serve your app in the Language your user wants
 
 # What Are We Trying To Solve?
 
-You know when you go to Germany & you have to hunt for a flag to get your task done? That.
+Ever been on holiday, opened a website & you have to hunt for a country flag to get your task done? That.
+
+- E.g.: https://www.cd.cz/default.htm
 
 ---
-# Solutions
 
-ACCEPT_LANGUAGE header - Swap in browser.
+# How do we use i18n in Rails?
 
----
-# Solutions
-
-Scope in the browser URL
+- `t('.body_text')` - Drop that into a view, it'll say "Oh hey go define a key"
+- Define a key - Look it appears.
 
 ---
-# Solutions
 
-Save a locale against the user.
+# How do we change the locale?
+
+- Set it explicitly
+- Scope in the browser URL
+- ACCEPT_LANGUAGE header - Swap in browser.
 
 ---
-<!--
--->
+
+# What about forms & models?
+
+- Changing model names, attributes & errors is totally possible.
+- Here is a gem to make it easier:
+
+```ruby
+$ bundle add i18n-debug --group "development"
+```
+
+---
+
+# What about forms & models ?
+
+- Submit a form with an error
+- Change the attribute, model name & error message
+
+---
+
+# What about date formatting?
+
+```ruby
+$ bundle add rails-i18n
+```
+
+Look the date changes!
+
+---
 
 # Resources
 
