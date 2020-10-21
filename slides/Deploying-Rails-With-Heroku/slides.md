@@ -56,9 +56,9 @@ It was better, but we still had to maintain & scale servers.
 
 ---
 <!--
-Then we got a bit smarter, and moved things like the Database/Redis/Storage onto their own servers. Then we'd deploy our app to one or many servers, sometimes with a load balancers in front of them.
+What Heroku allowed, is really easy way to get away from those servers. They handle it, we just give them the code.
 
-It was better, but we still had to maintain & scale servers.
+This meant we could independently scale parts of our app & not have to worry about the as much.
 -->
 
 # What makes Heroku Special?
@@ -67,16 +67,6 @@ It was better, but we still had to maintain & scale servers.
   <img src="/Deploying-Rails-With-Heroku/images/with-heroku.png" alt="Single Server with some cloud services" height="400" />
 </div>
 
----
-<!--
-What Heroku allowed, is really easy way to get away from those servers. They handle it, we just give them the code.
-
-This meant we could independently scale parts of our app & not have to worry about the as much.
--->
-
-# What makes Heroku Special?
-
-- All icons in clouds
 
 ---
 
