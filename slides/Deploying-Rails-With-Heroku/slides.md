@@ -50,7 +50,9 @@ It was better, but we still had to maintain & scale servers.
 
 # What makes Heroku Special?
 
-- Image of server with a few icons in it, then some clouds with icons icons in it.
+<div style="display: flex; justify-content: space-around; align-items: center; margin-top: 4rem;">
+  <img src="/Deploying-Rails-With-Heroku/images/server-with-services.png" alt="Single Server with some cloud services" height="400" />
+</div>
 
 ---
 <!--
@@ -61,7 +63,9 @@ It was better, but we still had to maintain & scale servers.
 
 # What makes Heroku Special?
 
-- Image of server with a few icons in it, then some clouds with icons icons in it.
+<div style="display: flex; justify-content: space-around; align-items: center; margin-top: 4rem;">
+  <img src="/Deploying-Rails-With-Heroku/images/with-heroku.png" alt="Single Server with some cloud services" height="400" />
+</div>
 
 ---
 <!--
