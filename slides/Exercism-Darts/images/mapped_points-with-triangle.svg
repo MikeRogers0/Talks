@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="602px" height="602px" viewBox="0 0 602 602" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css"><![CDATA[
+      #Grid line {
+        stroke: #979797;
+        opacity: 0.5;
+      }
+
+      #Grid line.middle {
+        stroke: #000000;
+      r
+    ]]></style>
+  </defs>
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect id="Rectangle" x="1.5" y="1.5" width="599" height="599"></rect>
+    <circle id="1-Points" fill="#B02C1C" cx="301" cy="301" r="250"></circle>
+    <circle id="5-Points" fill="#0EAACD" cx="301" cy="301" r="125"></circle>
+    <circle id="10-Points" fill="#20CD0E" cx="301" cy="301" r="25"></circle>
+    <g id="Grid" opacity="0.699823289" transform="translate(1.000000, 1.000000)" stroke-linecap="square">
+      <g id="Y" transform="translate(0.000000, 24.000000)">
+        <line x1="0" y1="1" x2="600" y2="1" id="Line"></line>
+        <line x1="0" y1="551" x2="600" y2="551" id="Line"></line>
+        <line x1="0" y1="51" x2="600" y2="51" id="Line"></line>
+        <line x1="0" y1="101" x2="600" y2="101" id="Line"></line>
+        <line x1="0" y1="151" x2="600" y2="151" id="Line"></line>
+        <line x1="0" y1="201" x2="600" y2="201" id="Line"></line>
+        <line x1="0" y1="251" x2="600" y2="251" id="Line"></line>
+        <line x1="0" y1="301" x2="600" y2="301" id="Line"></line>
+        <line x1="0" y1="351" x2="600" y2="351" id="Line"></line>
+        <line x1="0" y1="401" x2="600" y2="401" id="Line"></line>
+        <line x1="0" y1="451" x2="600" y2="451" id="Line"></line>
+        <line x1="0" y1="501" x2="600" y2="501" id="Line"></line>
+        <line x1="0" y1="26" x2="600" y2="26" id="Line"></line>
+        <line x1="0" y1="76" x2="600" y2="76" id="Line"></line>
+        <line x1="0" y1="126" x2="600" y2="126" id="Line"></line>
+        <line x1="0" y1="176" x2="600" y2="176" id="Line"></line>
+        <line x1="0" y1="226" x2="600" y2="226" id="Line"></line>
+        <line x1="0" y1="276" x2="600" y2="276" id="Line" class="middle"></line>
+        <line x1="0" y1="326" x2="600" y2="326" id="Line"></line>
+        <line x1="0" y1="376" x2="600" y2="376" id="Line"></line>
+        <line x1="0" y1="426" x2="600" y2="426" id="Line"></line>
+        <line x1="0" y1="476" x2="600" y2="476" id="Line"></line>
+        <line x1="0" y1="526" x2="600" y2="526" id="Line"></line>
+      </g>
+      <g id="X" transform="translate(300.000000, 300.000000) rotate(-270.000000) translate(-300.000000, -300.000000) translate(0.000000, 24.000000)">
+        <line x1="0" y1="1" x2="600" y2="1" id="Line"></line>
+        <line x1="0" y1="551" x2="600" y2="551" id="Line"></line>
+        <line x1="0" y1="51" x2="600" y2="51" id="Line"></line>
+        <line x1="0" y1="101" x2="600" y2="101" id="Line"></line>
+        <line x1="0" y1="151" x2="600" y2="151" id="Line"></line>
+        <line x1="0" y1="201" x2="600" y2="201" id="Line"></line>
+        <line x1="0" y1="251" x2="600" y2="251" id="Line"></line>
+        <line x1="0" y1="301" x2="600" y2="301" id="Line"></line>
+        <line x1="0" y1="351" x2="600" y2="351" id="Line"></line>
+        <line x1="0" y1="401" x2="600" y2="401" id="Line"></line>
+        <line x1="0" y1="451" x2="600" y2="451" id="Line"></line>
+        <line x1="0" y1="501" x2="600" y2="501" id="Line"></line>
+        <line x1="0" y1="26" x2="600" y2="26" id="Line"></line>
+        <line x1="0" y1="76" x2="600" y2="76" id="Line"></line>
+        <line x1="0" y1="126" x2="600" y2="126" id="Line"></line>
+        <line x1="0" y1="176" x2="600" y2="176" id="Line"></line>
+        <line x1="0" y1="226" x2="600" y2="226" id="Line"></line>
+        <line x1="0" y1="276" x2="600" y2="276" id="Line" class="middle"></line>
+        <line x1="0" y1="326" x2="600" y2="326" id="Line"></line>
+        <line x1="0" y1="376" x2="600" y2="376" id="Line"></line>
+        <line x1="0" y1="426" x2="600" y2="426" id="Line"></line>
+        <line x1="0" y1="476" x2="600" y2="476" id="Line"></line>
+        <line x1="0" y1="526" x2="600" y2="526" id="Line"></line>
+      </g>
+    </g>
+    <g id="Triangle" transform="translate(301.000000, 300.000000)" stroke="#000000" stroke-linecap="square" stroke-width="2">
+      <line x1="0.5" y1="1.5" x2="225.5" y2="226.5" id="Distance"></line>
+      <line x1="0.5" y1="1.5" x2="226" y2="1" id="Distance"></line>
+      <line x1="226" y1="227" x2="226" y2="1" id="Distance"></line>
+    </g>
+    <g id="9,-9" transform="translate(514.000000, 514.000000)">
+      <path d="M12.5,1.12977573 L15.8416251,7.90064767 L23.3137259,8.98640747 L17.9068629,14.2567963 L19.1832501,21.6987047 L12.5,18.1851121 L5.81674986,21.6987047 L7.09313706,14.2567963 L1.68627412,8.98640747 L9.15837493,7.90064767 L12.5,1.12977573 Z" id="Star" stroke="#000000" fill="#FFFFFF"></path>
+      <text font-family="Helvetica" font-size="18" font-weight="normal" fill="#000000">
+        <tspan x="27" y="18">9,-9</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

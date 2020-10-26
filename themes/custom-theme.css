@@ -42,3 +42,11 @@ pre, code[class*="language-"] {
   animation-duration: 0.75s;
   animation-delay: 3s;
 }
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
