@@ -16,7 +16,7 @@ _class: prose
 
 <!-- _class: lead -->
 
-# Deploying Rails With Heroku
+# Deploying Rails To Heroku
 
 Get your app online
 
