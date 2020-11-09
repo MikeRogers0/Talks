@@ -123,7 +123,7 @@ What we need to do is figure is if the point is within one of the arches.
 -->
 
 <center>
-  <img src="/Exercism-Darts/images/mapped_points.svg" />
+  <img src="/Exercisms/Darts/images/mapped_points.svg" />
 </center>
 
 ---
@@ -132,7 +132,7 @@ This distance.
 -->
 
 <center>
-  <img src="/Exercism-Darts/images/mapped_points-with-line.svg" />
+  <img src="/Exercisms/Darts/images/mapped_points-with-line.svg" />
 </center>
 
 ---
@@ -141,7 +141,7 @@ Oh, a triangle!
 -->
 
 <center>
-  <img src="/Exercism-Darts/images/mapped_points-with-triangle.svg" />
+  <img src="/Exercisms/Darts/images/mapped_points-with-triangle.svg" />
 </center>
 
 ---
@@ -155,7 +155,7 @@ We need to use Pythagorean theorem!
 a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>
 
 <center style="margin-top: 4rem;">
-  <video preload="auto" autoplay="true" loop="true" playsinline="" aria-label="Adventure Time Finn GIF" src="/Exercism-Darts/images/mathematical.mp4" type="video/mp4" width="400" height="240"></video>
+  <video preload="auto" autoplay="true" loop="true" playsinline="" aria-label="Adventure Time Finn GIF" src="/Exercisms/Darts/images/mathematical.mp4" type="video/mp4" width="400" height="240"></video>
 </center>
 
 ---
@@ -178,27 +178,6 @@ Darts.new(0, 10).hypotenuse # 10.0
 Darts.new(-5, 0).hypotenuse # 5.0
 Darts.new(9, -9).hypotenuse # 12.727922061357855
 ```
----
-<!--
-We need to use Pythagorean theorem!
--->
-
-# Pythagorean theorem
-
-```ruby
-class Darts
-  # [..]
-
-  def hypotenuse
-    Math.sqrt(@x**2 + @y**2)
-  end
-end
-
-Darts.new(0, 10).hypotenuse # 10.0
-Darts.new(-5, 0).hypotenuse # 5.0
-Darts.new(9, -9).hypotenuse # 12.727922061357855
-```
-
 ---
 <!--
 We need to use Pythagorean theorem!
