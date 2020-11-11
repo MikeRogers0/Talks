@@ -32,3 +32,20 @@ Also I do Ruby...I still don't know the right way to install it.
 # asdf?
 
 It can be used to install node, 
+
+---
+
+# Docker
+
+Super good projects with lots of dependencies (e.g. different database versions)
+
+Uses lots of memory.
+
+- Docker-compose is cool for turning on lots of things.
+
+---
+
+# Which way is best?
+
+Up to you! Though I'm the path of least documentation.
+
