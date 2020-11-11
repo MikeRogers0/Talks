@@ -2,53 +2,33 @@
 paginate: true
 theme: custom-theme
 size: 16:9
-title: Offline Ruby on Rails
+title: Developing in Multiple Languages
 _class: prose
 ---
 <!-- _class: lead -->
 
-# Offline Ruby on Rails
+# Developing in Multiple Languages
 
-How to make your rails app work offline.
+Let's make it super easy to get started developing in something new!
+
+---
+<!-- _class: lead -->
+
+# Where does this come from?
+
+I _always_ mess up installing languages, or a Software Update breaks everything for me.
+
+Also I do Ruby...I still don't know the right way to install it.
 
 ---
 
-# How are we going to do this?!
+# What has worked for me?
 
-We're going to use Service Workers
-
----
-
-# What are Service Workers?
-
-They download stuff. I normally disabled them
+- asdf - Manage multiple runtime versions with a single CLI tool
+- Docker - Tiny virtual computer within your computer, just for your app.
 
 ---
 
-# How to access the debugging tools
+# asdf?
 
-URLs of where to go.
-
----
-
-# Approaches to caching
-
-- Cache a few things
-- Cache after visited
-
----
-
-# Gotchas
-
-- ~50MB limit ( https://stackoverflow.com/a/35696506/445724 )
-- 
-
----
-
-# Notes
-
-- https://github.com/rossta/serviceworker-rails
-- https://developers.google.com/web/fundamentals/primers/service-workers
-- https://developers.google.com/web/tools/workbox/guides/advanced-recipes
-- https://dev.to/coorasse/the-progressive-rails-app-46ma#getting-started
-- https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker
+It can be used to install node, 
