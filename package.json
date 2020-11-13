@@ -7,10 +7,12 @@
     "@marp-team/marp-cli": "^0.21.0",
     "@marp-team/marp-core": "^1.3.0",
     "@marp-team/marpit": "^1.6.2",
+    "cpy-cli": "^3.1.1",
     "markdown-it-highlight-lines": "^1.0.2",
     "markdown-it-mark": "^3.0.0"
   },
   "scripts": {
+    "build": "npx marp --theme custom-theme --engine ./engine.js --output dist --input . && npx cpy '**/*' '!**/*.md'  ../dist/ --parents --cwd=slides",
     "start": "npx marp --theme custom-theme --engine ./engine.js -s -w ."
   }
 }
