@@ -31,7 +31,7 @@ Backend engineer at monzo
 
 <div align="center" style="margin-top: 4rem;">
 
-[![](/ActiveRecord--Events/images/jake-wright-boolean-fields.png)](https://twitter.com/JakeWrightUK/status/1199357199950241792)
+[![](images/jake-wright-boolean-fields.png)](https://twitter.com/JakeWrightUK/status/1199357199950241792)
 
 </div>
 

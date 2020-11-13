@@ -42,7 +42,7 @@ _class: prose
 
 <!-- _class: lead -->
 
-<img src="/Introduction-To-Stimulus/images/stimulus.svg" width="100" height="100" style="margin: 0 auto;" />
+<img src="images/stimulus.svg" width="100" height="100" style="margin: 0 auto;" />
 
 # An Introduction To Stimulus.js
 
@@ -92,9 +92,9 @@ The end result was lots of spaghetti code.
 When Ruby On Rails first started, our options were limited.
 
 <div style="display: flex; justify-content: space-around; align-items: center; font-size: 1.2rem; margin-top: 5rem;">
-  <img src="/Introduction-To-Stimulus/images/coffeescript-logo.png" height="150" />
-  <img src="/Introduction-To-Stimulus/images/jQuery_logo.png" height="100" />
-  <img src="/Introduction-To-Stimulus/images/backbone.png" height="125" />
+  <img src="images/coffeescript-logo.png" height="150" />
+  <img src="images/jQuery_logo.png" height="100" />
+  <img src="images/backbone.png" height="125" />
 </div>
 
 ---
@@ -109,8 +109,8 @@ But they also added an additional moving part of our apps we could potentially a
 Then we ended up with libraries which favoured rendering on the client side.
 
 <div style="display: flex; justify-content: space-around; align-items: center; font-size: 1.2rem; margin-top: 5rem;">
-  <img src="/Introduction-To-Stimulus/images/React_logo_logotype_emblem.png" height="200" />
-  <img src="/Introduction-To-Stimulus/images/1200px-Vue.js_Logo_2.svg.png" height="200" />
+  <img src="images/React_logo_logotype_emblem.png" height="200" />
+  <img src="images/1200px-Vue.js_Logo_2.svg.png" height="200" />
 </div>
 
 ---
@@ -125,7 +125,7 @@ I really wanted to just get back to sending HTML to users, with a bit of JavaScr
 
 <div align="center" style="margin-top: 2.5rem;">
 
-[![HTML is faster then React](/Introduction-To-Stimulus/images/zachleat-html-is-fast.png)](https://twitter.com/zachleat/status/1169998370041208832)
+[![HTML is faster then React](images/zachleat-html-is-fast.png)](https://twitter.com/zachleat/status/1169998370041208832)
 
 </div>
 
@@ -140,7 +140,7 @@ The story:
 
 # Where does Stimulus Come From?
 
-<img src="/Introduction-To-Stimulus/images/basecamp.svg" width="300" height="200" style="margin: 1rem auto; display: block;" />
+<img src="images/basecamp.svg" width="300" height="200" style="margin: 1rem auto; display: block;" />
 
 - It was made Javan Makhmali (He works at Basecamp)
 - First launched released in January 2018

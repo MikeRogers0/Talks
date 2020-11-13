@@ -38,7 +38,7 @@ It was terrible. The servers were often poorly configured, and was hard to scale
 # What makes Heroku Special?
 
 <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 4rem;">
-  <img src="/Deploying-Rails-With-Heroku/images/single-server.svg" alt="Single Server with all services on it" height="400" />
+  <img src="images/single-server.svg" alt="Single Server with all services on it" height="400" />
 </div>
 
 ---
@@ -51,7 +51,7 @@ It was better, but we still had to maintain & scale servers.
 # What makes Heroku Special?
 
 <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 4rem;">
-  <img src="/Deploying-Rails-With-Heroku/images/server-with-services.png" alt="Single Server with some cloud services" height="400" />
+  <img src="images/server-with-services.png" alt="Single Server with some cloud services" height="400" />
 </div>
 
 ---
@@ -64,7 +64,7 @@ This meant we could independently scale parts of our app & not have to worry abo
 # What makes Heroku Special?
 
 <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 4rem;">
-  <img src="/Deploying-Rails-With-Heroku/images/with-heroku.png" alt="Single Server with some cloud services" height="400" />
+  <img src="images/with-heroku.png" alt="Single Server with some cloud services" height="400" />
 </div>
 
 
