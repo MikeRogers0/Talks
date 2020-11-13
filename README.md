@@ -13,7 +13,7 @@ docker run --rm --init -v $PWD:/home/marp/app -e LANG=$LANG -p 8080:8080 -p 3771
 or:
 
 ```bash
-npm start
+yarn start
 ```
 
 Then visit http://127.0.0.1:8080/
