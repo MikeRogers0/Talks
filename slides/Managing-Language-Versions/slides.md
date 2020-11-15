@@ -70,8 +70,8 @@ It has a really super install page, where you can put in your setup & it'll give
 
 # asdf - Installing
 
-<center>
-  <img src="images/asdf-vm-setup.png" width="100%" />
+<center class="center-contents">
+  <img src="images/asdf-vm-setup.png" width="900px" />
 </center>
 
 ---
@@ -90,11 +90,18 @@ Then once that's done, you can start running ruby commands.
 
 # asdf - Installing a Language
 
-- Setup Ruby:
-  - `$ asdf plugin add ruby`
-- Install Latest Ruby Version:
-  - `$ asdf install ruby 2.7.2`
-  - `$ asdf global ruby 2.7.2`
+```bash{0}
+# Setup Ruby
+$ asdf plugin add ruby
+
+# Install Latest Ruby Version:
+$ asdf install ruby 2.7.2
+$ asdf global ruby 2.7.2
+
+# Did it work?
+$ ruby -v
+ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
+```
 
 ---
 <!--
@@ -105,11 +112,18 @@ I think that's really nice!
 
 # asdf - Installing a Language
 
-- Setup Python:
-  - `$ asdf plugin add python`
-- Install Latest Python Version
-  - `$ asdf install python 3.9.0`
-  - `$ asdf global python 3.9.0`
+```bash{0}
+# Setup Python
+$ asdf plugin add python
+
+# Install Latest Python Version:
+$ asdf install python 3.9.0
+$ asdf global python 3.9.0
+
+# Did it work?
+$ python --version
+Python 3.9.0
+```
 
 ---
 
@@ -125,11 +139,9 @@ set to what you set here.
 I've been using asdf a lot to play with exercisms lately.
 -->
 
-# asdf - Setting Language per project
+# asdf - Setting version per project
 
-Setting Ruby versions on a per-folder basis:
-
-```bash {4}
+```bash{0}
 $ cd ~/Old_Project
 
 $ asdf local ruby 2.7.2
@@ -145,20 +157,17 @@ python 3.9.0
 Plus it's not like messing your with system, it's just putting files in a dot folder. Which I quite like.
 -->
 
-# asdf - Setting Language per project
+# asdf - Setting version per project
 
 Once you're up and going, you'll notice when you type the python command it's actually coming from the `.asdf` folder.
 
-```bash
+```bash{0}
 $ which python
 /Users/mike/.asdf/shims/python
+
 $ asdf which python
 /Users/mike/.asdf/installs/ruby/3.9.0/bin/python
 
 $ python --version
 Python 3.9.0
 ```
-
----
-
-# 
