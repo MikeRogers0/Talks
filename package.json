@@ -8,14 +8,14 @@
     "@marp-team/marp-core": "^1.3.0",
     "@marp-team/marpit": "^1.6.2",
     "cpy-cli": "^3.1.1",
-    "indexifier": "^3.2.2",
     "markdown-it-highlight-lines": "^1.0.2",
     "markdown-it-mark": "^3.0.0"
   },
   "scripts": {
-    "build": "npx marp --theme custom-theme --engine ./engine.js --output dist --input . && yarn build-copy-images && yarn build-directory-index",
+    "build": "npx marp --theme custom-theme --engine ./engine.js --output dist --input . && yarn build-copy-images && yarn build-rename-slides-to-index && yarn build-directory-index",
     "build-copy-images": "npx cpy '**/*' '!**/*.md'  ../dist/ --parents --cwd=slides",
-    "build-directory-index": "npx indexifier ./dist --html --no-empty-directories > dist/index.html",
+    "build-rename-slides-to-index": "cd ./dist && find ./ -name slides.html | rename 's/slides.html/index.html/g'",
+    "build-directory-index": "cd ./dist && tree -a -P '*.html' -I '*images*|*assets*' -C -R -T 'Mike Rogers - Talks' -d -H . > index.html",
     "start": "npx marp --theme custom-theme --engine ./engine.js -s -w ."
   }
 }
