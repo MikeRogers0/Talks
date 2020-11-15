@@ -15,7 +15,7 @@
   "scripts": {
     "build": "npx marp --theme custom-theme --engine ./engine.js --output dist --input . && yarn build-copy-images && yarn build-directory-index",
     "build-copy-images": "npx cpy '**/*' '!**/*.md'  ../dist/ --parents --cwd=slides",
-    "build-directory-index": "npx indexifier ./dist --html --no-empty-directories > dist/index.html",
+    "build-directory-index": " cd ./dist && tree -H . > index.html",
     "start": "npx marp --theme custom-theme --engine ./engine.js -s -w ."
   }
 }
