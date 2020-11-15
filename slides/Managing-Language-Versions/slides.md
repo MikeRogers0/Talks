@@ -129,21 +129,31 @@ I've been using asdf a lot to play with exercisms lately.
 
 Setting Ruby versions on a per-folder basis:
 
-- `$ cd ~/Project && asdf local ruby 2.7.2`
-- `$ cd ~/Other_Project && asdf local ruby 2.6.0`
+```bash {4}
+$ cd ~/Old_Project
+
+$ asdf local ruby 2.7.2
+$ asdf local python 3.9.0
+
+$ cat .tool-versions
+ruby 2.7.2
+python 3.9.0
+```
 
 ---
 <!--
 Plus it's not like messing your with system, it's just putting files in a dot folder. Which I quite like.
 -->
 
-# asdf - How does it work under the hood?
+# asdf - Setting Language per project
 
 Once you're up and going, you'll notice when you type the python command it's actually coming from the `.asdf` folder.
 
 ```bash
 $ which python
 /Users/mike/.asdf/shims/python
+$ asdf which python
+/Users/mike/.asdf/installs/ruby/3.9.0/bin/python
 
 $ python --version
 Python 3.9.0
