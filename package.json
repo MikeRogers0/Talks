@@ -14,7 +14,7 @@
   "scripts": {
     "build": "npx marp --theme custom-theme --engine ./engine.js --output dist --input . && yarn build-copy-images && yarn build-rename-slides-to-index && yarn build-directory-index",
     "build-copy-images": "npx cpy '**/*' '!**/*.md'  ../dist/ --parents --cwd=slides",
-    "build-rename-slides-to-index": "cd ./dist && find ./ -name slides.html | rename 's/slides\.html/index\.html/g'",
+    "build-rename-slides-to-index": "cd ./dist && find ./ -name slides.html | rename 's/slides.html/index.html/g'",
     "build-directory-index": "cd ./dist && tree -a -P '*.html' -I '*images*|*assets*' -C -R -T 'Mike Rogers - Talks' -d -H . > index.html",
     "start": "npx marp --theme custom-theme --engine ./engine.js -s -w ."
   }
