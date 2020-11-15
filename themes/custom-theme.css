@@ -50,3 +50,22 @@ pre, code[class*="language-"] {
 .text-2xl {
   font-size: 1.5rem;
 }
+
+.center-contents {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}

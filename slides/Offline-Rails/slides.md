@@ -19,29 +19,63 @@ We're going to use Service Workers
 
 ---
 
-# What are Service Workers?
+# Traditional Request
 
-They download stuff. I normally disabled them
-
----
-
-# How to access the debugging tools
-
-URLs of where to go.
+<div class="center-contents mt-12">
+  <img src="images/traditional-internet.svg"/>
+</div>
 
 ---
 
-# Approaches to caching
+# How Service worker works!
 
-- Cache a few things
-- Cache after visited
+<div class="center-contents mt-4">
+  <img src="images/service-worker.svg" />
+</div>
 
 ---
 
 # Gotchas
 
-- ~50MB limit ( https://stackoverflow.com/a/35696506/445724 )
-- 
+- URL of service worker must stay the same, e.g. `/service-worker.js`
+- If you're using webpacker-dev-server, it will give you a hard time.
+- ~25MB limit ( https://stackoverflow.com/a/35696506/445724 )
+
+---
+
+# Installing with Gem
+
+- https://github.com/rossta/serviceworker-rails
+- `gem 'serviceworker-rails'`
+- `rails g serviceworker:install`
+
+---
+
+# Installing with Gem
+
+- Go through files, show it working
+
+---
+
+# How to access the debugging tools
+
+- `about:debugging`
+- Throw up URLs for different browsers
+
+---
+
+# Approaches to caching
+
+- Cache files ahead of time
+- Cache after visiting
+- Mix of both.
+
+---
+
+# Using webpacker in your service worker
+
+- Make it load with ES6 using `webpacker-pwa`
+- Sweet, we can use workbox now.
 
 ---
 
@@ -50,5 +84,8 @@ URLs of where to go.
 - https://github.com/rossta/serviceworker-rails
 - https://developers.google.com/web/fundamentals/primers/service-workers
 - https://developers.google.com/web/tools/workbox/guides/advanced-recipes
-- https://dev.to/coorasse/the-progressive-rails-app-46ma#getting-started
 - https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker
+- https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle#avoid-url-change
+- https://dev.to/coorasse/the-progressive-rails-app-46ma
+- https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
+- https://github.com/coorasse/webpacker-pwa

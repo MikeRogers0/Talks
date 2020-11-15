@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="561px" height="191px" viewBox="0 0 561 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Page 1</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" x="-261" y="-305" width="1080" height="768"></rect>
+        <g id="Application" transform="translate(0.000000, 3.000000)">
+            <text font-family="Helvetica" font-size="31" font-weight="normal" fill="#000000">
+                <tspan x="0" y="181">Application</tspan>
+            </text>
+            <g id="layout" transform="translate(8.000000, 0.000000)" stroke="#3271F0" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                <rect id="Rectangle" x="0" y="0" width="135" height="135" rx="2"></rect>
+                <line x1="0" y1="45" x2="135" y2="45" id="Path"></line>
+                <line x1="45" y1="135" x2="45" y2="45" id="Path"></line>
+            </g>
+        </g>
+        <g id="Internet" transform="translate(422.745532, 3.000000)">
+            <text font-family="Helvetica" font-size="31" font-weight="normal" fill="#000000">
+                <tspan x="15" y="181">Internet</tspan>
+            </text>
+            <g id="globe" stroke="#3271F0" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+                <circle id="Oval" cx="67.5" cy="67.5" r="67.5"></circle>
+                <line x1="0" y1="67.5" x2="135" y2="67.5" id="Path"></line>
+                <path d="M68,0 C84.8836425,18.483882 94.4785811,42.4712285 95,67.5 C94.4785811,92.5287715 84.8836425,116.516118 68,135 C51.1163575,116.516118 41.5214189,92.5287715 41,67.5 C41.5214189,42.4712285 51.1163575,18.483882 68,0 L68,0 Z" id="Path"></path>
+            </g>
+        </g>
+        <path id="Line" d="M365.792247,61.5954081 L367.971186,62.8210612 L391.971186,76.3210612 L395.844855,78.5 L391.971186,80.6789388 L367.971186,94.1789388 L365.792247,95.4045919 L363.34094,91.0467143 L365.519879,89.8210612 L381.201,81 L215.289,81 L230.971186,89.8210612 L233.150124,91.0467143 L230.698818,95.4045919 L228.519879,94.1789388 L204.519879,80.6789388 L200.64621,78.5 L204.519879,76.3210612 L228.519879,62.8210612 L230.698818,61.5954081 L233.150124,65.9532857 L230.971186,67.1789388 L215.288,76 L381.202,76 L365.519879,67.1789388 L363.34094,65.9532857 L365.792247,61.5954081 Z" fill="#212121" fill-rule="nonzero"></path>
+    </g>
+</svg>
