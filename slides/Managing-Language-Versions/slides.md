@@ -14,28 +14,32 @@ I'm going to talk about making it easier to install & switch between languages.
 
 # Developing in Multiple Languages
 
-Make it easier to install & use multiple languages!
+Lets install & use multiple languages!
 
 ---
 <!-- _class: lead -->
 <!--
-I like to try out lots of different languages, especially on Exercism channel.
+I like to mess around with different languages, especially on Exercism channel.
 
-It's fun to install a new language one weekend & play about, but I also don't want to have to jump through hoops when trying old stuff.
+It's fun to install a new language one weekend & play about!
+
+But out the box, installing languages is kind of tricky.
 -->
 
 # Where does this come from?
 
-I want to try lots of languages, and have everything still work when I change project.
+I like to try lots of languages, but I also don't want to break my work machine.
 
 ---
 <!-- _class: lead -->
 <!--
 Question for the crowd!
 
+(Wait for responses)
+
 I do Ruby...I still don't know the _right way_ to install it 🤫
 
-I messed up installing languages, or a Software Update breaks everything for me.
+I messed up installing languages, and had Software Update breaking everything.
 -->
 
 # Question
@@ -53,22 +57,22 @@ asdf: It's a bit like homebrew, if anyone has used that.
 You can install a bunch of languages, but it was also designed to make switching between language versions easier.
 
 E.g. You want to run the latest Ruby on one project, but on another project it's running an older version. It just kind of handles it.
-
-But what I really like about it is not to many command to learn.
 -->
 
-# asdf
+# I like asdf
 
 It can be used to install Node.js, Python, Ruby, Elixir, Elm - Pretty much everything!
 
-https://asdf-vm.com/#/
+https://asdf-vm.com/
 
 ---
 <!--
-It has a really super install page, where you can put in your setup & it'll give you tailored install instructions. 
+It has a really super install page, where you can put in your setup & it'll give you tailored install instructions.
+
+I liked that! Super awesome!
 -->
 
-# asdf - Installing
+# Installing asdf
 
 <center class="center-contents">
   <img src="images/asdf-vm-setup.png" width="900px" />
@@ -76,21 +80,81 @@ It has a really super install page, where you can put in your setup & it'll give
 
 ---
 <!--
-Once you have asdf setup, the commands to install a language are pretty approachable also.
+Once you have asdf setup, 
 
-The "plugin add" line is saying "Let me install ruby", behind the scenes it has a neat plugin architecture which lets anyone create a way to install plugins. So if someone was to release something new you could get access to it pretty fast.
+It's approachable to get a new language setup.
+-->
 
+# Installing a Language
+
+```bash{0}
+# Setup Ruby
+$ asdf plugin add ruby
+
+# Install Latest Ruby Version:
+$ asdf install ruby 2.7.2
+$ asdf global ruby 2.7.2
+
+# Did it work?
+$ ruby -v
+ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
+```
+
+---
+<!--
+The "plugin add" line is saying "give me the resources to install ruby".
+
+Behind the scenes it has a neat plugin architecture which lets anyone create a way to install plugins.
+
+So if someone was to release something new you could get access to it pretty fast.
+-->
+
+# Installing a Language
+
+```bash{2}
+# Setup Ruby
+$ asdf plugin add ruby
+
+# Install Latest Ruby Version:
+$ asdf install ruby 2.7.2
+$ asdf global ruby 2.7.2
+
+# Did it work?
+$ ruby -v
+ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
+```
+
+---
+<!--
 Then the next two commands are:
 
-- Lets install ruby
+- Lets install this version of ruby
 - Lets use this version of ruby globally (The default version), so when nothing else is set.
+-->
 
+# Installing a Language
+
+```bash{5,6}
+# Setup Ruby
+$ asdf plugin add ruby
+
+# Install Latest Ruby Version:
+$ asdf install ruby 2.7.2
+$ asdf global ruby 2.7.2
+
+# Did it work?
+$ ruby -v
+ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
+```
+
+---
+<!--
 Then once that's done, you can start running ruby commands.
 -->
 
-# asdf - Installing a Language
+# Installing a Language
 
-```bash{0}
+```bash{9,10}
 # Setup Ruby
 $ asdf plugin add ruby
 
@@ -110,7 +174,7 @@ To install python, it's similar
 I think that's really nice!
 -->
 
-# asdf - Installing a Language
+# Installing a Language
 
 ```bash{0}
 # Setup Python
@@ -126,22 +190,32 @@ Python 3.9.0
 ```
 
 ---
-
+<!-- _class: lead -->
 <!--
-
-I mentioned it's good for managing multiple versions of languages.
-
-So within a folder, you'd just run this command and if you've got the version number installed it'll just start using the different version.
-
-It'll create a `.tool-versions` file for each folders, everything under it will be
-set to what you set here.
-
-I've been using asdf a lot to play with exercisms lately.
+Pretty often you'll probably have to run multiple versions of a tool. Here is how you do it!
 -->
 
-# asdf - Setting version per project
+# Different versions per project
 
-```bash{0}
+What if you have different projects running different versions of languages?
+
+---
+
+<!--
+I mentioned it's good for managing multiple versions of languages.
+
+Within a projects folder you can run a command which pretty much says:
+
+"Everything under this folder, run this version of this language"
+
+And it'll create a `.tool-versions` to keep track of what you chose, everything under it will use what's defined in the file.
+
+Assuming you've got that version installed, it'll just work.
+-->
+
+# Different versions per project
+
+```bash{3,4}
 $ cd ~/Old_Project
 
 $ asdf local ruby 2.7.2
@@ -153,21 +227,32 @@ python 3.9.0
 ```
 
 ---
+
 <!--
-Plus it's not like messing your with system, it's just putting files in a dot folder. Which I quite like.
+If you don't have it right installed you can run the "asdf install" command, and it'll make sure you've got the right version installed.
+
+This is super hand for if you're working in a team & that `.tool-version` file is in version control.
 -->
 
-# asdf - Setting version per project
+# Different versions per project
 
-Once you're up and going, you'll notice when you type the python command it's actually coming from the `.asdf` folder.
+```bash{5}
+$ git clone git@github.com:MikeRogers0/Old_Project.git
+$ cd ~/Old_Project
 
-```bash{0}
-$ which python
-/Users/mike/.asdf/shims/python
-
-$ asdf which python
-/Users/mike/.asdf/installs/ruby/3.9.0/bin/python
+# Make sure we have the right versions installed
+$ asdf install
+python 3.9.0 is already installed
+ruby 2.7.2 is already installed
 
 $ python --version
 Python 3.9.0
 ```
+
+---
+<!-- _class: lead -->
+<!--
+You made it!
+-->
+
+# That's all
