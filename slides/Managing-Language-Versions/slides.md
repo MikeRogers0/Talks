@@ -37,6 +37,8 @@ Question for the crowd!
 
 (Wait for responses)
 
+Do you remember? Was it a good experience?
+
 I messed up installing languages, and had Software Update breaking everything.
 -->
 
@@ -48,10 +50,9 @@ How do does everyone install their favourite programming language right now?
 <!--
 When I first started in dev, I used WAMP!
 
-I remember just clicking "next" on an installer, then I just I just had like
-everything I needed.
+I remember just clicking "next" on an installer, then I just I just had like everything I needed.
 
-It was so cool!
+I don't remember it ever telling me what version numbers I installer, but it was so cool!
 -->
 
 # My Experiences So Far
@@ -122,7 +123,7 @@ E.g. You want to run the latest Ruby on one project, but on another project it's
 
 # I like asdf
 
-It can be used to install Node.js, Python, Ruby, Elixir, Elm - Pretty much everything!
+It can be used to install Node.js, Python, Ruby, Elixir, kubectl, Redis - Pretty much everything developers use!
 
 https://asdf-vm.com/
 
@@ -210,6 +211,8 @@ ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
 
 ---
 <!--
+You might have to open a new tab.
+
 Then once that's done, you can start running ruby commands.
 -->
 
@@ -231,8 +234,6 @@ ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
 ---
 <!--
 To install python, it's similar
-
-I think that's really nice!
 -->
 
 # Installing a Language
@@ -251,12 +252,34 @@ Python 3.9.0
 ```
 
 ---
+<!--
+To install same with yarn
+
+I think that's really nice!
+-->
+
+# Installing a Language
+
+```bash{0}
+# Setup Yarn
+$ asdf plugin add yarn
+
+# Install Latest Yarn Version:
+$ asdf install yarn 1.22.10
+$ asdf global yarn 1.22.10
+
+# Did it work?
+$ yarn -v
+1.22.10
+```
+
+---
 <!-- _class: lead -->
 <!--
 Pretty often you'll probably have to run multiple versions of a tool. Here is how you do it!
 -->
 
-# Different versions per project
+# Different Versions Per Project
 
 What if you have different projects running different versions of languages?
 
@@ -274,7 +297,7 @@ And it'll create a `.tool-versions` to keep track of what you chose, everything 
 Assuming you've got that version installed, it'll just work.
 -->
 
-# Different versions per project
+# Different Versions Per Project
 
 ```bash{3,4}
 $ cd ~/Old_Project
@@ -295,7 +318,7 @@ If you don't have it right installed you can run the "asdf install" command, and
 This is super hand for if you're working in a team & that `.tool-version` file is in version control.
 -->
 
-# Different versions per project
+# Different Versions Per Project
 
 ```bash{5}
 $ git clone git@github.com:MikeRogers0/Old_Project.git
@@ -338,9 +361,11 @@ asdf plugin remove <name>               Remove plugin and package versions
 <!--
 You made it! BREATH!
 
+Hopefully that gave you enough feel like you can totally go try new languages without to many walls.
+
 If you have questions, ping me on Slack or on Twitter :)
 -->
 
-# That's all
+# 🎉 That's all 🎉
 
 Twitter: @MikeRogers0

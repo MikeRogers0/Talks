@@ -71,6 +71,11 @@ pre, code[class*="language-"] {
   font-size: 1.2rem;
 }
 
+.center-contents img {
+  box-shadow: 0 0 0.1rem;
+  border-radius: 0.2rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -102,9 +107,4 @@ pre.language-bash:before {
   cursor: default;
   content: 'Terminal';
   display: block;
-}
-
-img {
-  box-shadow: 0 0 0.1rem;
-  border-radius: 0.2rem;
 }
