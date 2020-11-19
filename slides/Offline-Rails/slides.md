@@ -89,3 +89,4 @@ We're going to use Service Workers
 - https://dev.to/coorasse/the-progressive-rails-app-46ma
 - https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
 - https://github.com/coorasse/webpacker-pwa
+- https://www.youtube.com/watch?v=RJZbWw5GEfU
