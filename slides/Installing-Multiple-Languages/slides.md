@@ -2,7 +2,7 @@
 paginate: true
 theme: custom-theme
 size: 16:9
-title: Developing in Multiple Languages
+title: Installing Multiple Languages
 _class: prose
 ---
 <!-- _class: lead -->
@@ -12,7 +12,7 @@ Hi! I'm Mike!!
 I'm going to talk about making it easier to install & switch between languages.
 -->
 
-# Developing in Multiple Languages
+# Installing Multiple Languages
 
 Lets install & use multiple languages!
 
