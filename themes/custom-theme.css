@@ -71,7 +71,7 @@ pre, code[class*="language-"] {
   font-size: 1.2rem;
 }
 
-.center-contents img {
+img.bordered {
   box-shadow: 0 0 0.1rem;
   border-radius: 0.2rem;
 }

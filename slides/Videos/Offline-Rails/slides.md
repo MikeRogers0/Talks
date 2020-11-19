@@ -27,10 +27,18 @@ We're going to use Service Workers
 
 ---
 
-# How Service worker works!
+# With a Service Worker
 
 <div class="center-contents mt-4">
   <img src="images/service-worker.svg" />
+</div>
+
+---
+
+# With a Service Worker
+
+<div class="center-contents mt-4">
+  <img src="images/service-worker-offline.svg" />
 </div>
 
 ---
