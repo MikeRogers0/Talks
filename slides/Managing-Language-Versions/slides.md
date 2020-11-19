@@ -37,14 +37,75 @@ Question for the crowd!
 
 (Wait for responses)
 
-I do Ruby...I still don't know the _right way_ to install it 🤫
-
 I messed up installing languages, and had Software Update breaking everything.
 -->
 
 # Question
 
 How do does everyone install their favourite programming language right now?
+
+---
+<!--
+When I first started in dev, I used WAMP!
+
+I remember just clicking "next" on an installer, then I just I just had like
+everything I needed.
+
+It was so cool!
+-->
+
+# My Experiences So Far
+
+<center class="center-contents mt-4">
+  <img src="images/wamp.png" />
+</center>
+
+---
+<!--
+Now I do Ruby a lot...I don't think there is a _right way_ to install it 🤫
+
+On their website it gives like a few choices...
+-->
+
+# My Experiences So Far
+
+<center class="center-contents mt-4">
+  <img src="images/ruby-choices.png" />
+</center>
+
+---
+<!--
+If you want to run different versions of ruby,
+
+There are 59 million pages telling you slightly different ways to do it.
+-->
+
+# My Experiences So Far
+
+<center class="center-contents mt-4">
+  <img src="images/google-results-for-multiple-ruby-versions.png" />
+</center>
+
+---
+<!--
+Though other languages have the same issue.
+-->
+
+# My Experiences So Far
+
+<center class="center-contents mt-4">
+  <img src="images/google-results-for-multiple-python-versions.png" />
+</center>
+
+---
+<!-- _class: lead -->
+<!--
+I just want installing a language to be easy!
+-->
+
+# What I want
+
+Something which lets me install all the things, without having a big adventure each time.
 
 ---
 <!-- _class: lead -->
@@ -74,7 +135,7 @@ I liked that! Super awesome!
 
 # Installing asdf
 
-<center class="center-contents">
+<center class="center-contents mt-4">
   <img src="images/asdf-vm-setup.png" width="900px" />
 </center>
 
@@ -238,7 +299,7 @@ This is super hand for if you're working in a team & that `.tool-version` file i
 
 ```bash{5}
 $ git clone git@github.com:MikeRogers0/Old_Project.git
-$ cd ~/Old_Project
+$ cd Old_Project
 
 # Make sure we have the right versions installed
 $ asdf install
@@ -250,9 +311,36 @@ Python 3.9.0
 ```
 
 ---
+
+<!--
+If you do ever get stuck, they have a super good help command.
+-->
+
+# If You Need Help
+
+```bash{1}
+$ asdf help
+version: v0.8.0
+
+MANAGE PLUGINS
+asdf plugin add <name> [<git-url>]      Add a plugin from the plugin repo OR,
+                                        add a Git repo as a plugin by
+                                        specifying the name and repo url
+asdf plugin list [--urls] [--refs]      List installed plugins. Optionally show
+                                        git urls and git-ref
+asdf plugin list all                    List plugins registered on asdf-plugins
+                                        repository with URLs
+asdf plugin remove <name>               Remove plugin and package versions
+```
+
+---
 <!-- _class: lead -->
 <!--
-You made it!
+You made it! BREATH!
+
+If you have questions, ping me on Slack or on Twitter :)
 -->
 
 # That's all
+
+Twitter: @MikeRogers0

@@ -103,3 +103,8 @@ pre.language-bash:before {
   content: 'Terminal';
   display: block;
 }
+
+img {
+  box-shadow: 0 0 0.1rem;
+  border-radius: 0.2rem;
+}
