@@ -7,7 +7,9 @@ _class: prose
 ---
 <!-- _class: lead -->
 <!--
-Hi! I'm Mike!!
+How cool does Firebase look?! Thank you Courtney!
+
+Hi! I'm Mike!! I'm a Ruby developer from the UK.
 
 I'm going to talk about making it easier to install & switch between languages.
 -->
@@ -323,6 +325,21 @@ python 3.9.0
 ```
 
 ---
+<!--
+Once you know about that .tools-version file, you'll start seeing it everywhere!
+-->
+
+# Different Versions Per Project
+
+<center class="center-contents mt-4">
+  <img src="images/tools-versions-is-everywhere.png" />
+</center>
+
+<center class="center-contents mt-4">
+😲
+</center>
+
+---
 
 <!--
 If you don't have it right installed you can run the "asdf install" command, and it'll make sure you've got the right version installed.
@@ -378,6 +395,6 @@ Hopefully that gave you enough feel like you can totally go try new languages wi
 If you have questions, ping me on Slack or on Twitter :)
 -->
 
-# 🎉 That's all 🎉
+# 🎉 Thank You 🎉
 
 Twitter: @MikeRogers0
