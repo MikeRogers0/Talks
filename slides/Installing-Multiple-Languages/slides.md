@@ -35,18 +35,16 @@ I like to try lots of languages, but I also don't want to break my work machine.
 ---
 <!-- _class: lead -->
 <!--
-Question for the crowd!
-
-(Wait for responses)
+Question to ask yourself!
 
 Do you remember? Was it a good experience?
 
-I messed up installing languages, and had Software Update breaking everything.
+Did you use homebrew, did you have to following some weird instructions online?
 -->
 
 # Question
 
-How do does everyone install their favourite programming language right now?
+Do you remember how you installed your first programming language?
 
 ---
 <!--
