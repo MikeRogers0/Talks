@@ -101,12 +101,24 @@ Though other languages have the same issue.
 ---
 <!-- _class: lead -->
 <!--
-I just want installing a language to be easy!
+I just want to get coding, then figure out the nuances of installing it later.
 -->
 
 # What I want
 
 Something which lets me install all the things, without having a big adventure each time.
+
+---
+<!-- _class: lead -->
+<!--
+I found two tools which are super awesome!
+
+I'm going to cover Docker in a future talk! For now we're going to focus on asdf.
+-->
+
+# What I found
+
+Docker & asdf
 
 ---
 <!-- _class: lead -->
