@@ -12,6 +12,7 @@ _class: prose
 How to make your rails app work offline.
 
 ---
+<!-- _class: lead -->
 
 # How are we going to do this?!
 
