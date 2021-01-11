@@ -6,10 +6,23 @@ title: Offline Ruby on Rails
 _class: prose
 ---
 <!-- _class: lead -->
+<!--
+This started off as a "I've seen a few sites with offline fallbacks, how easy is it in rails" experiment.
+
+I ended up quite liking the results & wanted to share them!
+-->
 
 # Offline Ruby on Rails
 
 How to make your rails app work offline.
+
+---
+<!-- _class: lead -->
+<!--
+
+-->
+
+# Where does this come from?
 
 ---
 <!-- _class: lead -->
