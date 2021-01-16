@@ -2,7 +2,7 @@
 paginate: true
 theme: custom-theme
 size: 16:9
-title: Offline Ruby on Rails
+title: Taking Rails Offline
 _class: prose
 ---
 <!-- _class: lead -->
@@ -12,17 +12,34 @@ This started off as a "I've seen a few sites with offline fallbacks, how easy is
 I ended up quite liking the results & wanted to share them!
 -->
 
-# Offline Ruby on Rails
+# Taking Rails Offline
 
-How to make your rails app work offline.
+How to make your Ruby on Rails apps resilient to unreliable networks
+
+---
+
+# What are we going to do?
+
+- We're going to go through some scenarios where this will be advantageous
+- I'll run you the technical approach
+- I have some gems which save you writing JavaScript
+- I'll explain the limitations
+- Maybe a demo!
 
 ---
 <!-- _class: lead -->
 <!--
+So where does _this_ come from!
 
+I have a few use cases, if you've experienced this:
+
+- You go onto a train & no network is unavailable
+- 
 -->
 
 # Where does this come from?
+
+Chuck up an emoji if the scenarios I'm pitching sound familiar!
 
 ---
 <!-- _class: lead -->
