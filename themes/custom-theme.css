@@ -76,6 +76,11 @@ img.bordered {
   border-radius: 0.2rem;
 }
 
+img.bordered[src*=".svg"] {
+  padding: 1rem;
+  background: #fff;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
