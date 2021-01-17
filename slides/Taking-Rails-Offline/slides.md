@@ -49,12 +49,18 @@ Chuck up an emoji if the scenarios I'm pitching sound familiar!
 <!--
 To do that we use bit of browser technology called a Service Worker.
 
+It has pretty good browser support, who has heard of them?
+
 Chuck up your emojis if you heard of them!
 -->
 
 # How are we going to do this?!
 
 We're going to use Service Workers
+
+<div class="center-contents mt-8">
+  <img src="images/can-i-use-service-workers.png" class="bordered" width="100%" />
+</div>
 
 ---
 <!-- _class: lead -->
@@ -134,33 +140,57 @@ I did start writing my own thing to show you, but looked big.
 JavaScript (But there are some nice gems to do it for us!)
 
 ---
+<!--
+So here is what the JS kind of looks like!
+We pretty much tell the browser to go look at /service-worker.js
+-->
 
-Explain the main steps:
+# How do we implement a service worker
 
-- application.js - Register the service worker
-- Browser request the file, turns it on
-- We have events like 
+```javascript{4}
+// app/assets/javascripts/application.js
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js', { scope: "/" })
+  });
+}
+```
 
 ---
-<!-- _class: lead -->
 <!--
+Then that file will have a few events we listen for.
 
+I did start with this method & it's good fun! But pretty soon I ended up
+with a really big file, and it would not fit on a slide.
 -->
 
 # How do we implement a service worker
 
 ```javascript
-// service_worker.js
+// public/service-worker.js
+self.addEventListener('install', function(event) {
+ // Cache some files
+});
 
+self.addEventListener('fetch', function(event) {
+ // Load a file from the cache, or request it from the network
+});
 ```
 
 ---
 
+<!--
+But we're Rails people, let me show you the two main 
+-->
+
 # Installing with Gem
 
-- https://github.com/rossta/serviceworker-rails
-- `gem 'serviceworker-rails'`
-- `rails g serviceworker:install`
+https://github.com/rossta/serviceworker-rails
+
+```bash
+$ bundle add serviceworker-rails
+$ rails g serviceworker:install
+```
 
 ---
 
@@ -170,25 +200,91 @@ Explain the main steps:
 
 ---
 
-# How to access the debugging tools
-
-- `about:debugging`
-- Throw up URLs for different browsers
+# Demo of Gem
 
 ---
 
-# Approaches to caching
+# Installing the Webpacker gem
 
-- Cache files ahead of time
-- Cache after visiting
-- Mix of both.
+https://github.com/coorasse/webpacker-pwa
+
+- Awesome because it lets you use Modern JS with Webpacker
+- Trickier to get setup
+- Lets you work a Library from google called Workbox, which is easier to configure
 
 ---
 
-# Using webpacker in your service worker
+# Installing the Webpacker gem
 
-- Make it load with ES6 using `webpacker-pwa`
-- Sweet, we can use workbox now.
+```javascript
+// app/javascript/service_workers/service-worker.js
+import { registerRoute } from 'workbox-routing';
+import { NetworkFirst, StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  new NetworkFirst({
+    cacheName: 'pages',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+    ],
+  }),
+);
+```
+
+---
+
+# Installing the Webpacker gem
+
+```javascript
+// app/javascript/service_workers/service-worker.js
+import { registerRoute } from 'workbox-routing';
+import { NetworkFirst, StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+
+registerRoute(
+  ({ request }) => request.mode === 'style',
+  new CacheFirst({
+    cacheName: 'css-files',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+    ],
+  }),
+);
+```
+
+---
+
+# Demo of Webpacker Gem
+
+---
+
+<!--
+I got to talk with someone who works on the IKEA website, and they had an interesting insight.
+
+Pretty much, if your site doesn't get much traffic it's not worth it.
+-->
+
+# How should you use it?
+
+> Way too big a footgun for a site like IKEA in my opinion. We don’t have the appshell model, and people tend to visit a few times a year rather than monthly to yearly.
+>
+> _Robin Whittleton, engineering manager for IKEA (His opinion, not IKEAs)_
+
+---
+
+<!--
+This is a good use case for it.
+-->
+
+# How should you use it?
+
+But Twitter uses it to cache some assets (like JavaScript) ahead of time
 
 ---
 
