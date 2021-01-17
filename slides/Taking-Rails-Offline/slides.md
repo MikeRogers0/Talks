@@ -14,7 +14,7 @@ I ended up quite liking the results & wanted to share them!
 
 # Taking Rails Offline
 
-How to make your Ruby on Rails apps resilient to unreliable networks
+How to make your Ruby on Rails apps resilient to unreliable networks & also improve app performance a bit better.
 
 ---
 
