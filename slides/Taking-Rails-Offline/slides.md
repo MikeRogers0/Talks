@@ -17,10 +17,15 @@ I ended up quite liking the results & wanted to share them!
 How to make your Ruby on Rails apps resilient to unreliable networks & also improve app performance a bit better.
 
 ---
+<!--
+This is my plan for what we'll talk about!
+
+We have about 15 minutes! Fingers crossed!
+-->
 
 # What are we going to do?
 
-- We're going to go through some scenarios where this will be advantageous
+- We're going to go through some scenarios where making some data available offline will be advantageous
 - I'll run you the approach
 - I have some gems which save you writing JavaScript
 - I'll explain the limitations
@@ -33,14 +38,14 @@ So where does _this_ come from!
 
 I have a few use cases, if you've experienced this throw up some emojis:
 
-- You go onto a train, maybe it goes underground & no network is unavailable. So you can't view a website.
+- You go onto a train, maybe it goes underground & no network is unavailable. Then maybe you'd just want to check the news or the next train times.
 - You're at home & someone on your local network eats all the bandwidth, so pages get slow.
 - Website you visited quite recently just goes down
 
 These are all problems we can mitigate against!
 -->
 
-# Where does this come from?
+# Why would you want to do this?
 
 Chuck up an emoji if the scenarios I'm pitching sound familiar!
 
@@ -126,20 +131,6 @@ But it can also fallback to the cache if the network is down.
 </div>
 
 ---
-<!-- _class: lead -->
-<!--
-This is a browser thing, so we will be doing some JS.
-
-But this is a Ruby group, so I'm going to show off the gems.
-
-I did start writing my own thing to show you, but looked big.
--->
-
-# How do we implement a service worker
-
-JavaScript (But there are some nice gems to do it for us!)
-
----
 <!--
 So here is what the JS kind of looks like!
 We pretty much tell the browser to go look at /service-worker.js
@@ -147,11 +138,12 @@ We pretty much tell the browser to go look at /service-worker.js
 
 # How do we implement a service worker
 
-```javascript{4}
+```javascript{4,5}
 // app/assets/javascripts/application.js
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/service-worker.js', { scope: "/" })
+    navigator.serviceWorker
+      .register('/service-worker.js', { scope: "/" })
   });
 }
 ```
@@ -176,6 +168,20 @@ self.addEventListener('fetch', function(event) {
  // Load a file from the cache, or request it from the network
 });
 ```
+
+---
+<!-- _class: lead -->
+<!--
+This is a browser thing, so we will be doing some JS.
+
+But this is a Ruby group, so I'm going to show off the gems.
+
+I did start writing my own thing to show you, but looked big.
+-->
+
+# How can _we_ implement a service worker
+
+There are some nice gems to do it for us!
 
 ---
 
