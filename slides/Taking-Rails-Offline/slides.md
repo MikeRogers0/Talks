@@ -111,6 +111,19 @@ If you open the Storage tab in your dev tools, you can see what's being saved.
 </div>
 
 ---
+
+<!-- _class: lead -->
+<!--
+Because all the files are cached offline, I can go offline & get a nice fallback.
+-->
+
+# How are we going to do this?!
+
+<div class="center-contents mt-2">
+  <img src="images/twitter-offline.png" class="bordered" width="100%" />
+</div>
+
+---
 <!-- _class: lead -->
 <!--
 You can visit the debugging page in your browser & you can see them all working (along with all the ones you've collected).
@@ -266,6 +279,8 @@ I did start writing a JavaScript file which should nicely for Rails for people, 
 <!-- _class: lead -->
 <!--
 Turns out awesome people have written stuff for us to use :)
+
+Let me quickly summarise them!
 -->
 
 # Is there a Gem for this?
@@ -277,27 +292,45 @@ Yes! I found two awesome ones!
 ---
 
 <!--
+serviceworker-rails - It's the easier choice, it ships a working JS file & you can tweak it based on your needs.
+
+webpacker-pwa - It's more complicated, but you can use a library called WorkBox to configure your caching rules.
 -->
 
-# serviceworker-rails
+# Which gem is the best?
 
-```bash
-$ bundle add serviceworker-rails --group=development
-$ rails g serviceworker:install
-```
-
-- Works via the Asset Pipeline
-- You predefine the assets you want to have cached and available offline
-- If you're app goes offline, it'll fallback if it doesn't have the file cached.
+| serviceworker-rails                   | webpacker-pwa                                   |
+|---------------------------------------|-------------------------------------------------|
+| Works via the Asset Pipeline          | Works with Webpacker                            |
+| One command to install                | More complex to setup                           |
+| You set up an array of files to cache | Can set more complex rules for what gets cached |
+| It's Vanilla JavaScript               | Modern JS (You can use Google Workbox)          |
 
 ---
 
 <!--
+serviceworker-rails - It's very easy to install!
 -->
 
 # serviceworker-rails
 
-```bash
+https://github.com/rossta/serviceworker-rails
+
+```bash{0}
+$ bundle add serviceworker-rails --group=development
+$ rails g serviceworker:install
+```
+
+---
+
+<!--
+These are the files it adds, the only important one is serviceworker.js.erb
+-->
+
+# serviceworker-rails
+
+```bash{8}
+$ git status
 On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -313,27 +346,62 @@ Changes to be committed:
 
 ---
 
-# Installing with Gem
+<!--
+The key thing to note in that file is you list the files you'd like available offline
+-->
 
-- Go through files, show it working
+# serviceworker-rails
+
+```javascript{7-9}
+// app/assets/javascripts/serviceworker.js.erb
+function onInstall(event) {
+  console.log('[Serviceworker]', "Installing!", event);
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(function prefill(cache) {
+      return cache.addAll([
+        '<%= asset_path "application.js" %>',
+        '<%= asset_path "application.css" %>',
+        '/offline.html',
+      ]);
+    })
+  );
+}
+```
 
 ---
 
-# Demo of Gem
+<!--
+Setting this one up requires a bit more setup.
+-->
 
----
-
-# Installing the Webpacker gem
+# webpacker-pwa 
 
 https://github.com/coorasse/webpacker-pwa
 
-- Awesome because it lets you use Modern JS with Webpacker
-- Trickier to get setup
-- Lets you work a Library from google called Workbox, which is easier to configure
+```bash{0}
+$ bundle add webpacker-pwa --group=development
+$ yarn add webpacker-pwa
+```
+
+Then you'll also need to edit `config/webpack/environment.js` & `config/webpacker.yml`.
 
 ---
 
-# Installing the Webpacker gem
+<!--
+But you'll be able to use Google Workbox, which is like Swiss army knife for writing Service Worker JS & it not becoming a giant complex mess.
+-->
+
+<div class="center-contents pt-2">
+  <img src="images/google-workbox.png" class="bordered" width="100%" />
+</div>
+
+---
+
+<!--
+Which is JavaScript library which has extracted lots of the complexity of writing Service Workers into something cleaner.
+-->
+
+# webpacker-pwa 
 
 ```javascript
 // app/javascript/service_workers/service-worker.js
@@ -356,40 +424,47 @@ registerRoute(
 
 ---
 
-# Installing the Webpacker gem
+<!--
+And they have a pretty nifty cookbook, which should mean things are pretty standard.
+-->
 
-```javascript
-// app/javascript/service_workers/service-worker.js
-import { registerRoute } from 'workbox-routing';
-import { NetworkFirst, StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
-import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+# webpacker-pwa 
 
-registerRoute(
-  ({ request }) => request.mode === 'style',
-  new CacheFirst({
-    cacheName: 'css-files',
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-    ],
-  }),
-);
-```
+<div class="center-contents pt-2">
+  <img src="images/workbox-docs.png" class="bordered" width="100%" />
+</div>
 
 ---
 
-# Demo of Webpacker Gem
+<!--
+- The URL having to stay the same is big hurdle. If you change the URL, you'll end up with multiple service workers running.
+
+- I couldn't find any good documentation about how much you can store in cache, someone on StackOverflow said 25MB
+
+- A good example for devices is iOS. I found I needed to bookmark my app on my homescreen for it to work, but on my browser is worked nicely.
+
+- Messing with requests can backfire. I had a friend misconfigure his, and it broke form submissions in production...they didn't notice for a while.
+
+- Not every app needs one...
+-->
+
+# The Gotchas
+
+- URL of service worker must stay the same, e.g. `/service-worker.js`
+- Cache size is pretty varied between devices, ~25MB ( https://stackoverflow.com/a/35696506/445724 ) is the maximum
+- Different devices handle the cache lifetime differently
+- It is tampering with requests, so can go wrong
+- Not suitable for all use apps
 
 ---
 
 <!--
 I got to talk with someone who works on the IKEA website, and they had an interesting insight.
 
-Pretty much, if your site doesn't get much traffic it's not worth it.
+If a user is only going to touch a few core pages a few times a year, it's not worth the effort.
 -->
 
-# How should you use it?
+# Not suitable for all use apps
 
 > Way too big a footgun for a site like IKEA in my opinion. We don’t have the appshell model, and people tend to visit a few times a year rather than monthly to yearly.
 >
@@ -398,32 +473,31 @@ Pretty much, if your site doesn't get much traffic it's not worth it.
 ---
 
 <!--
-This is a good use case for it.
+- Twitter ships like 5mb of JavaScript & fonts, which is massive. But the second time you visit it, it's pretty quick to load.
+- It's pretty cool to cache home pages
+- Say you've got client who is complaining a single page is slow, you could pre-cache it!
+- A social network in early January was able to make their feed read-only when their main site when down.
 -->
 
-# How should you use it?
+# The Wins
 
-But Twitter uses it to cache some assets (like JavaScript) ahead of time
-
----
-
-# Gotchas
-
-- URL of service worker must stay the same, e.g. `/service-worker.js`
-- If you're using webpacker-dev-server, it will give you a hard time.
-- ~25MB limit ( https://stackoverflow.com/a/35696506/445724 )
+- Twitter uses it to cache some assets (like JavaScript) ahead of time. I think most rails app would benefit from this
+- You can cache all your key files offline if you want
+- You can fetch slow content ahead of time
+- DDoS Mitigation
 
 ---
 
-# Notes
+<!-- _class: lead -->
 
-- https://github.com/rossta/serviceworker-rails
-- https://developers.google.com/web/fundamentals/primers/service-workers
-- https://developers.google.com/web/tools/workbox/guides/advanced-recipes
-- https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker
-- https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle#avoid-url-change
-- https://dev.to/coorasse/the-progressive-rails-app-46ma
-- https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
-- https://github.com/coorasse/webpacker-pwa
-- https://www.youtube.com/watch?v=RJZbWw5GEfU
-- https://serviceworke.rs/strategy-network-or-cache.html
+<!--
+Breath & tell them your name!
+
+Does anyone want to see a demo?
+-->
+
+# Thank you
+
+Twitter: @MikeRogers0
+
+Blog: [mikerogers.io](https://mikerogers.io/)

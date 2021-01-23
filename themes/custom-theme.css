@@ -85,6 +85,14 @@ img.bordered[src*=".svg"] {
   background: #fff;
 }
 
+table {
+  width: 100%;
+}
+
+table tbody {
+  font-size: 0.8rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
