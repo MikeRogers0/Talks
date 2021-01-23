@@ -20,7 +20,7 @@ Make your Ruby on Rails apps resilient to unreliable networks & also improve app
 <!--
 This is my plan for what we'll talk about!
 
-We have about 15 minutes! Fingers crossed!
+We have about 20 minutes! Fingers crossed!
 -->
 
 # What are we going to do?
@@ -101,7 +101,7 @@ If you open the Storage tab in your dev tools, you can see what's being saved.
 ---
 <!-- _class: lead -->
 <!--
-
+We're downloading a lot of files here, but they're all take 0ms...they're all coming from the service worker also.
 -->
 
 # How are we going to do this?!
@@ -114,7 +114,7 @@ If you open the Storage tab in your dev tools, you can see what's being saved.
 
 <!-- _class: lead -->
 <!--
-Because all the files are cached offline, I can go offline & get a nice fallback.
+Because all the files are cached offline, you get this happy side effect.
 -->
 
 # How are we going to do this?!
@@ -226,12 +226,11 @@ However, this is JavaScript & this is Ruby group! So...
 
 # Adding a Service Worker to Rails
 
-```javascript
+```javascript{0}
 // public/service-worker.js
 
-// Service Worker was added by the browser
 self.addEventListener('install', function(event) {
-  // Cache some files
+  // We've been added. Pre-cache some stuff
 });
 
 // A request is being made
@@ -371,6 +370,18 @@ function onInstall(event) {
 ---
 
 <!--
+The end result is if your site goes down, or the users wifi goes out & the file isn't cached they see this page.
+-->
+
+# serviceworker-rails
+
+<div class="center-contents mt-2">
+  <img src="images/public-offline.png" class="bordered" width="100%" />
+</div>
+
+---
+
+<!--
 Setting this one up requires a bit more setup.
 -->
 
@@ -403,21 +414,16 @@ Which is JavaScript library which has extracted lots of the complexity of writin
 
 # webpacker-pwa 
 
-```javascript
+```javascript{0}
 // app/javascript/service_workers/service-worker.js
 import { registerRoute } from 'workbox-routing';
-import { NetworkFirst, StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
-import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { NetworkFirst, CacheFirst } from 'workbox-strategies';
 
 registerRoute(
   ({ request }) => request.mode === 'navigate',
   new NetworkFirst({
     cacheName: 'pages',
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-    ],
+    plugins: [],
   }),
 );
 ```
