@@ -7,14 +7,14 @@ _class: prose
 ---
 <!-- _class: lead -->
 <!--
-This started off as a "I've seen a few sites with offline fallbacks, how easy is it in rails" experiment.
+This started off as a me just messing around making my Rails apps "Progress Web App'
 
 I ended up quite liking the results & wanted to share them!
 -->
 
 # Taking Rails Offline
 
-How to make your Ruby on Rails apps resilient to unreliable networks & also improve app performance a bit better.
+Make your Ruby on Rails apps resilient to unreliable networks & also improve app performance.
 
 ---
 <!--
@@ -25,11 +25,10 @@ We have about 15 minutes! Fingers crossed!
 
 # What are we going to do?
 
-- We're going to go through some scenarios where making some data available offline will be advantageous
-- I'll run you the approach
-- I have some gems which save you writing JavaScript
-- I'll explain the limitations
-- Maybe a demo!
+- We're going to go through scenarios where making some data available offline is advantageous
+- I'll run you through the approach
+- I'll show you the libraries to help you get going quickly.
+- We'll go through the gotchas & the wins
 
 ---
 <!-- _class: lead -->
@@ -57,47 +56,98 @@ To do that we use bit of browser technology called a Service Worker.
 It has pretty good browser support, who has heard of them?
 
 Chuck up your emojis if you heard of them!
+
+They landed in browsers around 2016, but they didn't make it to iOS until late 2018.
 -->
 
 # How are we going to do this?!
 
 We're going to use Service Workers
 
-<div class="center-contents mt-8">
+<div class="center-contents mt-5">
   <img src="images/can-i-use-service-workers.png" class="bordered" width="100%" />
 </div>
 
 ---
 <!-- _class: lead -->
 <!--
-You might have seen them in browsers, in a normal day they're there working the background on lots of sites.
+You probably have not noticed them quietly running on your machine.
+
+They pretty much are just JavaScript file we can run in the background while a user is looking at our webpage.
+
+You can use it for a bunch of stuff, but mainly it's caching files & tampering with requests to avoid touching the network.
 -->
 
 # How are we going to do this?!
 
 <div class="center-contents mt-8">
-  <img src="images/service-workers-in-firefox.png" class="bordered" />
+  <img src="images/service-workers-in-firefox.png" class="bordered" width="100%" />
 </div>
 
 ---
 <!-- _class: lead -->
 <!--
-This is the main thing we'll be using a service worker for. You kind of see something is happening to these requests
-and the service worker is doing it.
+Lots of websites quietly use them to download CSS & JavaScript assets.
+
+If you open the Storage tab in your dev tools, you can see what's being saved.
 -->
 
 # How are we going to do this?!
 
 <div class="center-contents mt-8">
-  <img src="images/service-worker-networks.png" class="bordered" />
+  <img src="images/cache-storage.png" class="bordered" width="100%" />
+</div>
+
+---
+<!-- _class: lead -->
+<!--
+
+-->
+
+# How are we going to do this?!
+
+<div class="center-contents mt-8">
+  <img src="images/service-worker-networks.png" class="bordered" width="100%" />
+</div>
+
+---
+<!-- _class: lead -->
+<!--
+You can visit the debugging page in your browser & you can see them all working (along with all the ones you've collected).
+
+When I first opened this page I found like 30 of them there.
+
+If you smash that inspect button, you can also see their code.
+-->
+
+# How are we going to do this?!
+
+<div class="center-contents mt-2">
+  <img src="images/about-debugging.png" class="bordered" width="100%" />
+</div>
+
+---
+<!-- _class: lead -->
+<!--
+Which is quite interesting to look at!
+
+How are we feeling about Service Workers? We all understand it's javascript file we can use to tamper with requests & cache stuff?
+
+Throw up some emojis for me!
+-->
+
+# How are we going to do this?!
+
+<div class="center-contents mt-2">
+  <img src="images/twitter-service-worker-debugging.png" class="bordered" width="100%" />
 </div>
 
 ---
 <!--
-So what is happening? Well in a normal request the user asks for the application, and we'll make requests to the internet.
+So pretty much in a traditional request, the app will always touch the network for things like assets and new data.
 -->
 
-# Traditional Request
+# In a Traditional Request
 
 <div class="center-contents mt-12">
   <img src="images/traditional-internet.svg" class="bordered" />
@@ -105,9 +155,7 @@ So what is happening? Well in a normal request the user asks for the application
 
 ---
 <!--
-When we add a service worker, we're able to tell the browser:
-
-"Hey, we'd use to use some javascript to decide what to do with this request"
+When we add the service worker, we can say "Actually, we've have this file - Don't touch the network".
 -->
 
 # With a Service Worker
@@ -118,10 +166,7 @@ When we add a service worker, we're able to tell the browser:
 
 ---
 <!--
-You can do a lot, the main use case is having a cache & telling browser to just go direct to the cache
-instead of even trying the network.
-
-But it can also fallback to the cache if the network is down.
+What this allows is if the network is slow or not around, we can use that file we cached.
 -->
 
 # With a Service Worker
@@ -131,12 +176,23 @@ But it can also fallback to the cache if the network is down.
 </div>
 
 ---
+<!-- _class: lead -->
 <!--
-So here is what the JS kind of looks like!
-We pretty much tell the browser to go look at /service-worker.js
+How are we doing for time?
+
+How do we add this magic to rails?
 -->
 
-# How do we implement a service worker
+# Adding a Service Worker to Rails
+
+---
+<!--
+We use a little bit of JavaScript to our application.js to say "If you can use run service workers, go run ours"
+
+Then the browser will go fetch that file.
+-->
+
+# Adding a Service Worker to Rails
 
 ```javascript{4,5}
 // app/assets/javascripts/application.js
@@ -150,52 +206,109 @@ if ('serviceWorker' in navigator) {
 
 ---
 <!--
-Then that file will have a few events we listen for.
+Normally that file will look a bit like this!
 
-I did start with this method & it's good fun! But pretty soon I ended up
-with a really big file, and it would not fit on a slide.
+However, this is JavaScript & this is Ruby group! So...
 -->
 
-# How do we implement a service worker
+# Adding a Service Worker to Rails
 
 ```javascript
 // public/service-worker.js
+
+// Service Worker was added by the browser
 self.addEventListener('install', function(event) {
- // Cache some files
+  // Cache some files
 });
 
+// A request is being made
+// Load a file from the cache, or request it from the network
 self.addEventListener('fetch', function(event) {
- // Load a file from the cache, or request it from the network
+  // return fetch(event.request);
+  console.log(event);
+  debugger;
 });
 ```
 
 ---
-<!-- _class: lead -->
 <!--
-This is a browser thing, so we will be doing some JS.
+If you're curious about writing one of these yourself have a look at:
 
-But this is a Ruby group, so I'm going to show off the gems.
+servicewore.rs - It's a cookbook site by Mozilla.
 
-I did start writing my own thing to show you, but looked big.
+It coverages how you'd implement strategies, e.g:
+
+1. Downloading ahead of time
+2. Asking the cache first for the file
 -->
 
-# How can _we_ implement a service worker
+# Adding a Service Worker to Rails
 
-There are some nice gems to do it for us!
+<div class="center-contents pt-2">
+  <img src="images/serviceworke.rs.png" class="bordered" width="100%" />
+</div>
 
 ---
 
 <!--
-But we're Rails people, let me show you the two main 
+They have a bunch of samples you can mess around with.
+
+I did start writing a JavaScript file which should nicely for Rails for people, but then I asked the question:
 -->
 
-# Installing with Gem
+# Adding a Service Worker to Rails
 
-https://github.com/rossta/serviceworker-rails
+<div class="center-contents pt-2">
+  <img src="images/serviceworke.rs-part-2.png" class="bordered" width="100%" />
+</div>
+
+---
+<!-- _class: lead -->
+<!--
+Turns out awesome people have written stuff for us to use :)
+-->
+
+# Is there a Gem for this?
+
+Yes! I found two awesome ones!
+
+`serviceworker-rails` & `webpacker-pwa`
+
+---
+
+<!--
+-->
+
+# serviceworker-rails
 
 ```bash
-$ bundle add serviceworker-rails
+$ bundle add serviceworker-rails --group=development
 $ rails g serviceworker:install
+```
+
+- Works via the Asset Pipeline
+- You predefine the assets you want to have cached and available offline
+- If you're app goes offline, it'll fallback if it doesn't have the file cached.
+
+---
+
+<!--
+-->
+
+# serviceworker-rails
+
+```bash
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   app/assets/javascripts/application.js
+	new file:   app/assets/javascripts/manifest.json.erb
+	new file:   app/assets/javascripts/serviceworker-companion.js
+	new file:   app/assets/javascripts/serviceworker.js.erb
+	modified:   app/views/layouts/application.html.erb
+	modified:   config/initializers/assets.rb
+	new file:   config/initializers/serviceworker.rb
+	new file:   public/offline.html
 ```
 
 ---
@@ -313,3 +426,4 @@ But Twitter uses it to cache some assets (like JavaScript) ahead of time
 - https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
 - https://github.com/coorasse/webpacker-pwa
 - https://www.youtube.com/watch?v=RJZbWw5GEfU
+- https://serviceworke.rs/strategy-network-or-cache.html
