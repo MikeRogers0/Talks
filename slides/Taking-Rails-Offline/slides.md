@@ -472,7 +472,7 @@ If a user is only going to touch a few core pages a few times a year, it's not w
 
 # Not suitable for all use apps
 
-> Way too big a footgun for a site like IKEA in my opinion. We don’t have the appshell model, and people tend to visit a few times a year rather than monthly to yearly.
+> Way too big a footgun for a site like IKEA in my opinion. People tend to visit less frequently and with less patterns than to, for example, a social network
 >
 > _Robin Whittleton, engineering manager for IKEA (His opinion, not IKEAs)_
 
