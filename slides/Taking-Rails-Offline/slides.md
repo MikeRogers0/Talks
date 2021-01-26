@@ -331,7 +331,7 @@ These are the files it adds, the only important one is serviceworker.js.erb
 
 # serviceworker-rails
 
-```bash{8}
+```bash{8,12}
 $ git status
 On branch main
 Changes to be committed:
@@ -570,7 +570,8 @@ If a user is only going to touch a few core pages a few times a year, it's not w
 - Cache some assets (like JavaScript & CSS) ahead of time like Twitter
 - Offer a few key pages offline (e.g. top news articles)
 - You can fetch slow content ahead of time
-- DDoS mitigation
+- They can can be used for background syncing
+- Useful for DDoS mitigation
 
 ---
 <!--
