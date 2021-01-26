@@ -10,6 +10,8 @@ _class: prose
 This started off as a me just messing around making my Rails apps "Progress Web App'
 
 I ended up quite liking the results & wanted to share them!
+
+Just an FYI! I'm going to mention a few resources in the talk, I'm going to put links to everything at the end.
 -->
 
 # Taking Rails Offline
@@ -291,7 +293,7 @@ Yes! I found two awesome ones!
 ---
 
 <!--
-serviceworker-rails - It's the easier choice, it ships a working JS file & you can tweak it based on your needs.
+serviceworker-rails - It's the easier choice, it ships a working JS file & you will tweak it based on your needs.
 
 webpacker-pwa - It's more complicated, but you can use a library called WorkBox to configure your caching rules.
 -->
@@ -303,12 +305,13 @@ webpacker-pwa - It's more complicated, but you can use a library called WorkBox 
 | Works via the Asset Pipeline          | Works with Webpacker                            |
 | One command to install                | More complex to setup                           |
 | You set up an array of files to cache | Can set more complex rules for what gets cached |
-| It's Vanilla JavaScript               | Modern JS (You can use Google Workbox)          |
+| Does not support Webpacker            | Modern JS (You can use Google Workbox)          |
+| Default is just an offline fallback   | Does not ship with a default file               |
 
 ---
 
 <!--
-serviceworker-rails - It's very easy to install!
+serviceworker-rails - It's very easy to install, but limited.
 -->
 
 # serviceworker-rails
@@ -316,7 +319,7 @@ serviceworker-rails - It's very easy to install!
 https://github.com/rossta/serviceworker-rails
 
 ```bash{0}
-$ bundle add serviceworker-rails --group=development
+$ bundle add serviceworker-rails
 $ rails g serviceworker:install
 ```
 
@@ -351,14 +354,13 @@ The key thing to note in that file is you list the files you'd like available of
 
 # serviceworker-rails
 
-```javascript{7-9}
+```javascript{7-8}
 // app/assets/javascripts/serviceworker.js.erb
 function onInstall(event) {
   console.log('[Serviceworker]', "Installing!", event);
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
       return cache.addAll([
-        '<%= asset_path "application.js" %>',
         '<%= asset_path "application.css" %>',
         '/offline.html',
       ]);
@@ -370,7 +372,46 @@ function onInstall(event) {
 ---
 
 <!--
-The end result is if your site goes down, or the users wifi goes out & the file isn't cached they see this page.
+Then it'll cache everything
+-->
+
+# serviceworker-rails
+
+
+<div class="center-contents mt-2">
+  <img src="images/service-worker-rails-caching.png" class="bordered" width="100%" />
+</div>
+
+---
+
+<!--
+The key thing to note in that file is you list the files you'd like available offline
+-->
+
+# serviceworker-rails
+
+```javascript{0}
+// app/assets/javascripts/serviceworker.js.erb
+function onFetch(event) {
+  event.respondWith(fetch(event.request).catch(function() {
+    return caches.match(event.request).then(function(response) {
+      if (response) { return response; }
+
+      // Fallback to offline.html
+      if (event.request.mode === 'navigate') {
+        return caches.match('/offline.html');
+      }
+    })
+  }));
+}
+```
+
+---
+
+<!--
+The end result is if the users networks goes down, or the users wifi goes out & the file isn't cached they see this page.
+
+It's a nice starting point, but not amazing.
 -->
 
 # serviceworker-rails
@@ -443,6 +484,45 @@ And they have a pretty nifty cookbook, which should mean things are pretty stand
 ---
 
 <!--
+But the end result for this gem was:
+
+I had quite good performance for loading CSS/JS assets
+-->
+
+# webpacker-pwa 
+
+<div class="center-contents pt-2">
+  <img src="images/webpacker-pwa-assets-are-fast.png" class="bordered" width="100%" />
+</div>
+
+---
+
+<!--
+Also without me having to explicitly predefine what I wanted offline, it had built cache of pages
+which were ok to display offline.
+-->
+
+# webpacker-pwa 
+
+<div class="center-contents pt-2">
+  <img src="images/webpacker-pwa-cached-pages.png" class="bordered" width="100%" />
+</div>
+
+---
+
+<!--
+Then once I turned my network off, my app still loaded.
+-->
+
+# webpacker-pwa 
+
+<div class="center-contents pt-2">
+  <img src="images/webpacker-pwa-site-offline.png" class="bordered" width="100%" />
+</div>
+
+---
+
+<!--
 - The URL having to stay the same is big hurdle. If you change the URL, you'll end up with multiple service workers running.
 
 - I couldn't find any good documentation about how much you can store in cache, someone on StackOverflow said 25MB
@@ -458,9 +538,9 @@ And they have a pretty nifty cookbook, which should mean things are pretty stand
 
 - URL of service worker must stay the same, e.g. `/service-worker.js`
 - Cache size is pretty varied between devices, ~25MB ( https://stackoverflow.com/a/35696506/445724 ) is the maximum
-- Different devices handle the cache lifetime differently
+- I've had one running on my local dev & a page not updating.
 - It is tampering with requests, so can go wrong
-- Not suitable for all use apps
+- There isn't a perfect gem or configuration for Rails apps.
 
 ---
 
@@ -487,10 +567,23 @@ If a user is only going to touch a few core pages a few times a year, it's not w
 
 # The Wins
 
-- Twitter uses it to cache some assets (like JavaScript) ahead of time. I think most rails app would benefit from this
-- You can cache all your key files offline if you want
+- Cache some assets (like JavaScript & CSS) ahead of time like Twitter
+- Offer a few key pages offline (e.g. top news articles)
 - You can fetch slow content ahead of time
-- DDoS Mitigation
+- DDoS mitigation
+
+---
+<!--
+DHH says I'm cool.
+
+He was talking about Hotwire & how Service Workers play nicely with HTML over the wire.
+
+So maybe something is coming to Rails...
+-->
+
+<div class="center-contents">
+  <img src="images/dhh-quote.png" class="bordered" width="100%" />
+</div>
 
 ---
 
