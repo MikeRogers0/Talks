@@ -222,8 +222,6 @@ if ('serviceWorker' in navigator) {
 ---
 <!--
 Normally that file will look a bit like this!
-
-However, this is JavaScript & this is Ruby group! So...
 -->
 
 # Adding a Service Worker to Rails
