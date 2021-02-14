@@ -347,5 +347,3 @@ I hope this inspired you to want to try Docker!
 Twitter: @MikeRogers0
 
 Blog: [mikerogers.io](https://mikerogers.io/)
-
----
