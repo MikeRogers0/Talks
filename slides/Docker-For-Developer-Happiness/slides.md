@@ -25,6 +25,7 @@ What is Docker & what does it solve?
 # What are we going to cover?
 
 - What is the problem?
+- What is Docker?
 - How do we use Docker?
 - Docker-Compose makes it easier!
 - What are the drawbacks?
@@ -91,6 +92,32 @@ With docker, we can make it so how we setup & run our projects pretty much the s
 
 👩‍💻 We need a small change on an old COBOL project!
 🧑‍💻 How do I turn this on & see it works?
+
+---
+
+<!-- _class: lead -->
+<!--
+Seriously what is it?
+
+This is kind of simplistic definition, but works.
+-->
+
+# What is Docker?
+
+Software to download & run lots of little virtual computers
+
+---
+
+<!--
+Here are some other definitions I'll be using!
+
+We build images, we run them in a container.
+-->
+
+# What is Docker?
+
+- Image: "A Docker image is a read-only template used to build containers. Images are used to store and ship applications."
+- Container: "A Docker container is a standardized, encapsulated environment that runs applications."
 
 ---
 
