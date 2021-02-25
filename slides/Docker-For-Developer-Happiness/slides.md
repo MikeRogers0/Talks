@@ -423,6 +423,18 @@ Starting app_postgres_1 ... done
 
 ---
 
+<!--
+There is even a VSCode integration
+-->
+
+# Docker Compose makes it easier!
+
+<div class="center-contents">
+  <img src="images/docker-compose-in-vscode.png" class="bordered" height="500px" />
+</div>
+
+---
+
 <!-- _class: lead -->
 
 <!--
