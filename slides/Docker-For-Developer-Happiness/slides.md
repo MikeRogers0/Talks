@@ -8,7 +8,9 @@ _class: prose
 
 <!-- _class: lead -->
 <!--
-Hi I'm Mike!
+Hi I'm Mike Rogers, I'm a Ruby Developer from the UK!
+
+I really like Docker! It makes me very happy, as
 
 Docker solved a lot of my developer woes & I want to share it with everyone!
 -->
@@ -20,24 +22,30 @@ What is Docker & what does it solve?
 ---
 
 <!--
+I'm going to give you an introduction to what Docker is.
+
+The aim of this talk is to give you enough confidence to know what on earth it is, and hopefully give it a try.
 -->
 
 # What are we going to cover?
 
-- What is the problem?
+- What are we trying to solve?
 - What is Docker?
 - How do we use Docker?
-- Docker-Compose makes it easier!
+- Docker Compose makes it easier!
 - What are the drawbacks?
 
 ---
 
 <!-- _class: lead -->
 <!--
+Seriously! Why am I telling you about this?
+I like to make sure you know why I think this solves problems.
+
 I'm going to go through some development scenarios where I think Docker would have helped.
 -->
 
-# What is the problem?
+# What are we trying to solve?
 
 ---
 
@@ -50,31 +58,41 @@ I worked on a product where every developer install the database tool we used (P
 One day we had a developer use a new SQL function which solved our problems really well. We got to production & it didn't work.
 
 Had we been using Docker, we could have say "Everyone use the same Postgres version as Production".
+
+Plus it would have kicked us into get around updating our postgres version.
 -->
 
-# What is the problem?
+# What are we trying to solve?
 
 🧑‍💻 I'm running Postgres 13
+
 👩‍💻 I'm running Postgres 12
+
 ☁️  Jokes on you! I'm still running Postgres 10
 
 ---
 
 <!-- _class: lead -->
 <!--
+Another true story!
+
 Have you ever picked up a legacy project which had a bunch of steps to get started?
 
-Installing some of those packages is hard! Sometimes they throw cryptic errors due to MacOS changing something.
+Installing some of those packages is hard! Sometimes they throw cryptic errors due to MacOS (Or the OS) changing something.
 
 Even worse, what if you end up with a random dependency from that project which screws with another project. It's all really messy.
 
-With Docker you're creating a "little box", with everything your app needs to run in that box. Once you're done, you can throw the box away.
+I totally hide in the toilet as a junior dev when I couldn't get an app setup on my machine & I didn't want to ask for help.
+
+With Docker, we can setup our apps with very few commands and depending on how it's setup you might not even need to look at terminal.
 -->
 
-# What is the problem?
+# What are we trying to solve?
 
 🧑‍💻 It's my first day! Why isn't the app starting?
+
 👩‍💻 Just install all the packages listed in the README
+
 📘 README: _Wildly out of date_
 
 ---
@@ -86,11 +104,14 @@ This is my big fear!
 Someone has a project & I don't know how to turn it on.
 
 With docker, we can make it so how we setup & run our projects pretty much the same.
+
+With Docker you're creating a "little box", with everything your app needs to run in that box. Once you're done, you can throw the box away.
 -->
 
-# What is the problem?
+# What are we trying to solve?
 
 👩‍💻 We need a small change on an old COBOL project!
+
 🧑‍💻 How do I turn this on & see it works?
 
 ---
@@ -104,7 +125,7 @@ This is kind of simplistic definition, but works.
 
 # What is Docker?
 
-Software to download & run lots of little virtual computers
+Software to build, download & run lots of little virtual computers on you computer.
 
 ---
 
@@ -112,12 +133,23 @@ Software to download & run lots of little virtual computers
 Here are some other definitions I'll be using!
 
 We build images, we run them in a container.
+
+Image: It's like a snapshot of a computers disc drive at a point in time, which we start our app at. Kind of like if you have Git version control looking at an entire Disc.
+
+Container: Runs the image
+
+Alpine Linux: Most images start with Alpine as their base image
+
+Don't worry if this terminology seems weird.
 -->
 
 # What is Docker?
 
-- Image: "A Docker image is a read-only template used to build containers. Images are used to store and ship applications."
-- Container: "A Docker container is a standardized, encapsulated environment that runs applications."
+📖 Terminology!
+
+- **Image:** A Docker image is a read-only template used to build containers. Images are used to store and ship applications.
+- **Container:** A Docker container is a standardized, encapsulated environment that runs applications.
+- **Alpine Linux:** Alpine Linux is a security-oriented, lightweight Linux distribution 🐧
 
 ---
 
@@ -229,13 +261,26 @@ CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 Then you can totally build that image & run it! Which is super cool!
 
 You can push that image up & share it with people, it's almost job done!
+
+So you could make a little CLI application in any language you want, and share it with your mate & they can run it.
+
+They just have to download that image
 -->
 
 # How do we use Docker?
 
 ```bash{0}
+# Build the Dockerfile
 $ docker build --tag local/my-app:latest .
+
+# Run the image locally
 $ docker run --rm -it local/my-app:latest
+
+# Push it to Docker Hub to share it
+$ docker push local/my-app:latest
+
+# Pull down from Docker Hub
+$ docker pull local/my-app:latest
 ```
 
 ---
@@ -247,9 +292,13 @@ After i built a few docker files, i wanted to find a way to manage more of my ap
 docker-compose was the answer. it's installed along with the other `docker` command, it should be there.
 -->
 
-# docker-compose makes it easier!
+# Docker Compose makes it easier!
 
 https://docs.docker.com/compose/
+
+```bash{0}
+$ docker-compose up
+```
 
 ---
 
@@ -283,9 +332,11 @@ services:
 
 <!--
 From there, can run this docker-compose up command & it'll just turn on everything we need.
+
+It'll even build the image if it needs to. So potentially the only setup notes you need in a project is "run with docker-compose up"
 -->
 
-# docker-compose makes it easier!
+# Docker Compose makes it easier!
 
 ```bash{0}
 $ docker-compose up
@@ -304,16 +355,26 @@ web_1        | Use Ctrl-C to stop
 ---
 
 <!--
-I can also go in & run adhoc commands :
+I can also go in & run adhoc commands.
+
+This is really cool!
 -->
 
-# docker-compose makes it easier!
+# Docker Compose makes it easier!
 
 ```bash{0}
 $ docker-compose run --rm web bash
 
 Creating app_web_run ... done
 bash-5.1$ 
+```
+
+```bash{0}
+$ docker-compose run --rm web bundle exec rails c
+
+Creating app_web_run ... done
+Loading development environment (Rails 6.1.1)
+irb(main):001:0> 
 ```
 
 ---
@@ -324,7 +385,7 @@ I can also just run on the services I care about.
 So sometimes I just turn on my database, then run my rails app via my local machine.
 -->
 
-# docker-compose makes it easier!
+# Docker Compose makes it easier!
 
 ```bash{0}
 $ docker-compose up postgres
@@ -336,27 +397,42 @@ Starting app_postgres_1 ... done
 
 <!-- _class: lead -->
 
+<!--
+There are some!
+-->
+
 # What are the drawbacks?
 
 ---
+
+<!--
+It's a bit of a resource hog on MacOS, it's better on Ubuntu.
+
+Machine within machine will be slower.
+
+You can delete the images, but they do add up.
+-->
 
 # What are the drawbacks?
 
 - High memory usage on MacOS
 - It is a machine with your machine, so it isn't as fast as running natively
-- The images uses a lot of disc space.
+- The images uses a lot of disc space
 
 ---
 
 <!--
 I also like this quote from Nicky T!
 
+I was watching him on a stream debug a Docker issue & he dropped it.
+
 It's not a silver bullet, you can still get some quirks slipping through & some people use it in different ways.
 -->
 
 # What are the drawbacks?
 
-> "Works on my Docker"
+> Works on my Docker
+
 Nick Taylor ( @nickytonline )
 
 ---
