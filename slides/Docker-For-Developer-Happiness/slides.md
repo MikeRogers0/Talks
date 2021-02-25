@@ -308,7 +308,7 @@ With Docker-compose, you setup a YAML file called docker-compose.yml which kind 
 "here are the things my app needs to run & some configuration". In this case, I've asked for a specific version of Postgres.
 -->
 
-```yaml{0}
+```yaml{6,11,13}
 # docker-compose.yml
 version: "3.8"
 
@@ -326,6 +326,34 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
+```
+
+---
+
+<!--
+Here is my setup if I was to do WordPress.
+
+I don't need to setup PHP, or download any Wordpress files. I just need a wp-content folder.
+-->
+
+```yaml{6,11,13}
+# wordpress/docker-compose.yml
+version: "3.8"
+
+services:
+   mysql:
+     image: mysql:latest
+     volumes:
+       - ./mysql-data:/var/lib/mysql
+
+   wordpress:
+     image: wordpress:latest
+     volumes:
+       - ./wp-content:/var/www/html/wp-content
+     ports:
+       - "127.0.0.1:8888:80"
+     depends_on:
+       - mysql
 ```
 
 ---
