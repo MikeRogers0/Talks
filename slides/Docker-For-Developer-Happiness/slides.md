@@ -341,19 +341,19 @@ I don't need to setup PHP, or download any Wordpress files. I just need a wp-con
 version: "3.8"
 
 services:
-   mysql:
-     image: mysql:latest
-     volumes:
-       - ./mysql-data:/var/lib/mysql
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql-data:/var/lib/mysql
 
-   wordpress:
-     image: wordpress:latest
-     volumes:
-       - ./wp-content:/var/www/html/wp-content
-     ports:
-       - "127.0.0.1:8888:80"
-     depends_on:
-       - mysql
+  wordpress:
+    image: wordpress:latest
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    ports:
+      - "127.0.0.1:8888:80"
+    depends_on:
+      - mysql
 ```
 
 ---
