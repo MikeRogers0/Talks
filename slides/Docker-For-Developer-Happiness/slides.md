@@ -125,7 +125,7 @@ This is kind of simplistic definition, but works.
 
 # What is Docker?
 
-Software to build, download & run lots of little virtual computers on you computer.
+Software to build, download & run lots of little virtual computers on your computer.
 
 ---
 
