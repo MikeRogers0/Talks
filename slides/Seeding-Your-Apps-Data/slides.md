@@ -9,13 +9,13 @@ _class: prose
 <!--
 Hello Everyone!
 
-I'm going to be seeding in rails, it's something which we all probably know about
+I'm going to be talking seeding in rails, it's something which we all probably know about
 but most the projects we're using probably are have empty files.
 -->
 
 # Seeding Data In Ruby On Rails
 
-A good `db/seeds.rb` file, makes every app amazing
+Good `db/seeds.rb`, help every app grow
 
 ---
 <!-- _class: lead -->
@@ -30,7 +30,7 @@ Plus I have some cool tricks to get a lot of value from your seed data.
 # What We'll Cover
 
 - What Are Seeds?
-- We'll check the vibe of the room
+- We'll Check The Vibe
 - Horror Stories On Why Seeds Are Useful
 - Approaches To Seeding
 - Testing Seeds
@@ -209,18 +209,15 @@ The Stolen Laptop
 <!-- _class: lead -->
 <!--
 Second story:
-I worked on an application where a series of failures happen.
 
-It was a project where it would send users email of what they need to look at that day via a cronjob;
-
+- Preview environment didn't have basic auth on it & passwords were the same.
 - The preview environments ran the cronjobs same as production
 - The dataset was an anonymised snapshot of production, often a few months behind (It would take a while to run & was very manual).
 - The preview environment used MailTrap to stop emails going out. But one day our client wanted to see the emails in their inbox. So some emails weren't anonymised in the snapshot.
 
 Then one day the client said "I want an exact copy of production in staging".
-We found out something went horribly wrong by the client asking why people were getting two of the same emails the next day.
 
-Lots of whoopsies there, but if we had better process around the whole
+Lots of whoopsies there, but if we had better process the preview environments sample data, it would have been avoidable.
 -->
 
 # Horror Stories On Why Seeds are Useful
@@ -230,7 +227,13 @@ Preview Environment Emailing Real Users
 ---
 <!-- _class: lead -->
 <!--
-Last Story: Don't make devs jump through hoops to have a decent environment.
+You always kind of know a project is going to be rubbish when you need to open console to create a user to login with.
+
+It's kind of nice to go through a local application with a developer & show them lots of pages with real feeling content on it.
+Plus it's even better if there are 100s of records to make N+1s obvious.
+
+
+This is something I'm quite passionate about, like if we want people to really enjoy working with Rails we need to care about this kind of low hanging fruit.
 -->
 
 # Horror Stories On Why Seeds are Useful
@@ -239,6 +242,7 @@ The poor initial developer experience
 
 ---
 <!--
+So know we know what were trying to avoid, how do we do it?
 -->
 
 # Approaches To Seeding
@@ -251,15 +255,17 @@ The poor initial developer experience
 
 ---
 <!--
+These are the ones you'd find in you `db/seeds.rb` file.
+
+The files can become very big pretty fast. I've seen them broken up into smaller files before
+
+Sometimes they might if statements to handles different environments and whatnot.
 -->
 
 # Explicitly Defined Seeds
 
-These are the ones you'd find in you `db/seeds.rb` file.
 
-The files can become very big pretty fast. I've seen them broken up into smaller files before:
-
-```ruby
+```ruby {0}
 # db/seeds.rb
 # Load all the files in db/seeds folder
 Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
@@ -267,43 +273,32 @@ Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
 end
 ```
 
----
-<!--
-Though hasn't been updated in a while
--->
-
-# Explicitly Defined Seeds
-
-https://github.com/james2m/seedbank
-
-Gives you more fine grain control of the order your seeds are run:
-
-```ruby
+```ruby {0}
 # db/seeds/companies.seeds.rb
-Company.find_or_create_by_name('Hatch')
-```
-
-```ruby
-# db/seeds/projects.seeds.rb
-after :companies do
-  company = Company.find_by_name('Hatch')
-  company.projects.create(title: 'Seedbank')
+Company.find_or_create_by!(name: 'Hatch') do |company|
+  company.other_details = "Awesome Stuff"
+  company.projects = [Project.new(title: 'Acme')]
 end
 ```
 
 ---
 <!--
+We all know faker?
+
+I find fuzz testing in development is kind of nice to find weird use cases.
+If I don't use Faker, I normally end up rolling my face over the keyboard.
+
+It make me think about the HTML components I'm designing.
 -->
 
 # Faker Generated Seeds
 
 https://github.com/faker-ruby/faker
 
-```ruby
+```ruby {0}
 require 'faker'
 
 Faker::Name.name      #=> "Christophe Bartell"
-
 Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"
 ```
 
@@ -314,9 +309,8 @@ I like this, especially in development environments
 
 # Faker Generated Seeds
 
-```ruby
+```ruby {0}
 # db/seeds.rb
-
 require 'faker'
 
 User.find_or_create_by!(email: 'admin@example.com') do |user|
@@ -327,33 +321,92 @@ User.find_or_create_by!(email: 'admin@example.com') do |user|
   user.posts << Post.new(title: Faker::Job.title)
   user.posts << Post.new(title: Faker::Job.title)
   user.posts << Post.new(title: Faker::Job.title)
-end if ENV['DURING_RELEASE_SEED_USER'] || Rails.env.development?
+end if ENV['SEED_USER']
 ```
 
 ---
-<!-- footer: https://thoughtbot.com/blog/factory_girl-for-seed-data -->
 <!--
-Don't use this approach. You might have problems with foreign keys
+You can also take it to the next level, and use the data you'll use in your tests to the mess with your app.
+
+When I was experimenting with this, I found this command.
 -->
 
-# Fixtures & Factories Generated Seeds
+# Fixtures Generated Seeds
 
-There is a command `rails db:fixtures:load FIXTURES=users,posts`, it will load fixtures into your current environment.
+```bash {0}
+$ rails db:fixtures:load FIXTURES=users,posts
+```
 
-You could also loop through your Factories, but ThoughtBot doesn't recommend doing it (it has a lot of short comings).
+There is a command, it will load fixtures into your current development environment.
 
-_I've not seen this approach used in the wild._
+_I've not seen this approach used in the wild, when I tried it I had trouble with foreign keys (Plus I've never worked on a project with decent fixtures)._
+
+---
+<!--
+So I wondered what would happen if I just used these instead!
+
+I generally have pretty flushed out factories, which are good representations of my expected data.
+-->
+<!-- footer: https://thoughtbot.com/blog/factory_girl-for-seed-data -->
+
+# Factories Generated Seeds
+
+```ruby {0}
+FactoryBot.define do
+  factory :user do
+    name { Faker::Name.name }
+    password { User.new.send(:password_digest, "12345678") }
+    sequence(:email) { |n| "email#{n}@example.com" }
+
+    factory :user_with_channel do
+      accounts { [build(:account_with_channel, owner: instance)] }
+    end
+  end
+end
+```
+
+---
+<!--
+I'm really liking this approach!
+
+ThoughtBot doesn't encourage this, but I've been using it a little & I really like it.
+
+The happy side effect I'm noticing it is:
+- Easier to write tests, as I'm looking at what the test will see.
+- I'm more incentivised to make working factories.
+
+I think if your app is simple, and you're starting fresh this could be a valid approach.
+-->
+
+# Factories Generated Seeds
+
+
+```ruby {0}
+# db/seeds.rb
+require 'factory_bot'
+
+if ENV['SEED_USER'] && User.where(email: 'example@example.com').zero?
+  FactoryBot.create(:user_with_channel, email: 'example@example.com'))
+end
+```
+
+I've been really liking this approach, it makes me want to have really good factories & run `rails db:reset` often.
 
 ---
 <!-- footer: "" -->
 <!--
+But what if you're picking up a project where there is nothing?
+
+Evil Martians have this pretty cool library for taking snapshots of user data & the relationships.
+
+So potentially you could automate a subset of data to be available for your local development & review apps.
+
+Potentially you could also run this in a way where you can log who is requesting what data, weather via version control or something else.
 -->
 
 # Anonymised Production Database
 
-https://github.com/evilmartians/evil-seed
-
-```
+```ruby {0}
 require 'evil_seed'
 EvilSeed.configure do |config|
   config.root('User', 'created_at > ?', Time.current.beginning_of_day)
@@ -362,29 +415,50 @@ EvilSeed.configure do |config|
     name  { Faker::Name.name }
     email { Faker::Internet.email }
   end
-end 
+end
 
 EvilSeed.dump('path/to/new_dump.sql')
 ```
 
+https://github.com/evilmartians/evil-seed
+
 ---
 <!--
-What if you don't put it in the database at all?
+Sometimes I find data is the same in all environments, but is in the database.
+
+So lets say you have a user with a Plan relationship. The plans are all the same for each environment.
+-->
+
+# Plain Old Ruby Objects
+
+Have you ever seen this?
+
+```ruby {0}
+class User < ApplicationRecord
+  belongs_to :plan
+end
+
+User.new(plan: Plan.premium).plan.display_adverts?
+# Outputs: false
+```
+
+---
+
+<!--
+So what if we pulled all the data from that table & put it into a Struct
+Along with some helper methods
 -->
 
 # Plain Old Ruby Objects
 
 
-```ruby
-Role = Struct.new(:id, :display_adverts, keyword_init: true) do
-  def self.find(id)
-    all.find { |plan| plan.id == id } || all.first
-  end
-
+```ruby {0}
+# models/plan.rb
+Plan = Struct.new(:id, :display_adverts, keyword_init: true) do
   def self.all
     @all ||= [
-      Role.new(id: 'free', display_adverts: true),
-      Role.new(id: 'premium', display_adverts: false)
+      Plan.new(id: 'free', display_adverts: true),
+      Plan.new(id: 'premium', display_adverts: false)
     ]
   end
 
@@ -394,16 +468,20 @@ end
 
 ---
 <!--
-This is fine & my favourite thing to do.
+Then rewrote our model to look like this.
+
+We avoid having to touch the database for this information, plus it's now the same across all environments.
+
+Plus all the data changes are in version control.
 -->
 
 # Plain Old Ruby Objects
 
 
-```ruby
+```ruby {0}
 class User < ApplicationRecord
   def plan
-    @plan ||= Plan.find(plan_id)
+    @plan ||= Plan.all.find { |plan| plan.id == plan_id }
   end
 end
 
@@ -411,24 +489,30 @@ User.new(plan_id: 'premium').plan.display_adverts?
 # Outputs: false
 ```
 
+
 ---
 <!--
-This is one of my favourite bits of code.
+DO IT!!
+
+I started just adding a file where I'd call the load_seed function
+with the various ENVs which do stuff & I'd just check stuff happens in my database.
+
+It doesn't have to be anything fancy, but it will pick up on any whoopsies.
 -->
 
 # Testing Seeds
 
-Yes you can!
-
-```ruby
+```ruby {0}
 # spec/db/seeds_spec.rb
 RSpec.describe 'Rails.application' do
   describe '#load_seed' do
     subject { Rails.application.load_seed }
+    before { ENV['SEED_USER'] = 'true' }
+    after { ENV['SEED_USER'] = nil }
 
     it do
       expect { subject }.to change(User, :count).by(1)
-        .and change(Project, :count).by(1)
+        .and change(Channel, :count).by(1)
     end
   end
 end
@@ -436,20 +520,45 @@ end
 
 ---
 <!--
+Plus as I use FactoryBot for my seeds right now, I often call the linter as part of the test suite.
+
+It's a really cool! From Factories I'm going to write anyway, I'm able to use them more effectively.
+-->
+
+# Testing Seeds
+
+If you're using FactoryBot you can Lint factories to find out quickly why something is failing.
+
+```ruby {0}
+# spec/factory_bot_spec.rb
+require "rails_helper"
+
+describe FactoryBot do
+  it { FactoryBot.lint traits: true }
+end
+```
+
+
+---
+<!--
+So what should we be doing?
+
+So you should be using seeds, they're a good foundation for any app.
 -->
 
 # What is the best way?
 
-- You should be able to run `rails db:seed` multiple times without fear.
-- Use them in a preview environment! You'll be more incentivised to keep them up to date.
+- You should be able to run `rails db:seed` multiple times without fear, ideally using ENV's to decide what is seeded.
+- Use them in a preview environment! You'll be more incentivised to keep them up to date & fleshed out.
 - Plain Old Ruby Objects for data that needs to be consistent across all environments.
-- Use partial dumps of production to investigate exceptions more closely.
+- Using FactoryBot for Seeds makes testing easier.
+- Use partial anonymised dumps of production to investigate exceptions more closely.
 
 ---
 <!-- _class: lead -->
 
 
-# Questions?
+# Thank you!
 
 [MikeRogers.io](https://mikerogers.io/)
 @MikeRogers0 on Twitter
