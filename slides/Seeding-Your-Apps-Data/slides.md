@@ -15,7 +15,7 @@ but most the projects we're using probably are have empty files.
 
 # Seeding Data In Ruby On Rails
 
-Good `db/seeds.rb`, help every app grow
+A good `db/seeds.rb`, helps every app grow
 
 ---
 <!-- _class: lead -->
