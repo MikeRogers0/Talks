@@ -556,6 +556,18 @@ So you should be using seeds, they're a good foundation for any app.
 
 ---
 <!-- _class: lead -->
+<!--
+Make a project better
+-->
+
+# Homework
+
+I want you to take a project with incomplete seeds, and make them 10% better.
+
+Then let me know how it goes!
+
+---
+<!-- _class: lead -->
 
 
 # Thank you!
