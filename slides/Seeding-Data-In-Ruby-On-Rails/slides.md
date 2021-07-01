@@ -20,6 +20,21 @@ A good `db/seeds.rb`, helps every app grow
 ---
 <!-- _class: lead -->
 <!--
+I'm going to throw some code at you during this talk!
+
+I'll drop links afterwards, but you can find them here.
+
+Also this talk is up on GitHub & written in markdown, if you want to take it & change it you can :D
+-->
+
+# Code Samples
+
+- https://talks.mikerogers.io/
+- https://github.com/mikerogers0/talks
+
+---
+<!-- _class: lead -->
+<!--
 This is what I'm going to be covering in this.
 
 The idea is by the end of it, you'll want to take any existing/new project and just add a few seeds.
