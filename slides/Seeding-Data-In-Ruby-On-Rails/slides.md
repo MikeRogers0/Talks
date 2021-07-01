@@ -549,7 +549,7 @@ If you're using FactoryBot you can Lint factories to find out quickly why someth
 require "rails_helper"
 
 describe FactoryBot do
-  it { FactoryBot.lint traits: true }
+  it { FactoryBot.lint(traits: true) }
 end
 ```
 
