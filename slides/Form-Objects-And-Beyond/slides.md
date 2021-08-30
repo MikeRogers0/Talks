@@ -370,6 +370,18 @@ TODO: Save the object to the DB each step, using form objects to validate each s
 ---
 <!-- _class: lead -->
 <!--
+What about multi-page forms?
+-->
+
+# dry-monads
+
+```ruby {0}
+TODO: Could be the future
+```
+
+---
+<!-- _class: lead -->
+<!--
 Make a project better
 -->
 
