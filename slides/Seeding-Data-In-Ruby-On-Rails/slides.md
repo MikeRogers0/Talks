@@ -551,6 +551,8 @@ end
 ---
 <!--
 How do you know when we've made good seeds?
+
+Most developers won't tell you something is wrong, we're all frogs will sit in boiling water sometimes.
 -->
 
 # What do good seeds look like?
@@ -559,13 +561,15 @@ How do you know if you've made good seeds?
 
 ---
 <!--
-How often
+Instead, look at measurable behaviour!
 -->
 
 # What do good seeds look like?
 
 - How often are your developers reaching for production data?
-- Running the app 
+- Running the app in development, do you have paginated collections?
+- Do your developers often reset their database?
+- Are people reviewing code looking at preview environments?
 
 ---
 <!--
