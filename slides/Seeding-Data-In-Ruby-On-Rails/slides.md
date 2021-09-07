@@ -15,9 +15,23 @@ but most the projects we're using probably are have empty files.
 
 # Seeding Data In Ruby On Rails
 
+A good `db/seeds.rb`, helps every app grow
+
 🌱
 
-A good `db/seeds.rb`, helps every app grow
+---
+<!-- _class: lead -->
+<!--
+I'm going to throw some code at you during this talk!
+I'll post links afterwards, but open source & written in Markdown.
+If you like it, I totally encourage you to take it & do whatever with it :)
+-->
+
+# Slides & Code Samples (MIT)
+
+- https://talks.mikerogers.io/
+- https://github.com/mikerogers0/talks
+
 
 ---
 <!-- _class: lead -->
@@ -155,6 +169,11 @@ end
 
 ---
 <!-- _class: lead -->
+
+# Horror Stories On Why Seeds Are Useful
+
+---
+<!-- _class: lead -->
 <!--
 First story:
 
@@ -192,7 +211,7 @@ Lots of whoopsies there, but if we had better process the preview environments s
 
 # Horror Stories On Why Seeds are Useful
 
-Preview Environment Emailing Real Users
+"Staging" Environment Emailing Real Users
 
 ---
 <!-- _class: lead -->
@@ -208,7 +227,7 @@ This is something I'm quite passionate about, like if we want people to really e
 
 # Horror Stories On Why Seeds are Useful
 
-The poor initial developer experience
+The poor developer experience
 
 ---
 <!-- _class: lead -->
@@ -216,11 +235,17 @@ The poor initial developer experience
 Before we continue! Let's check the vibes of the room!
 
 Throw up some emojis!
+-->
 
+# Check the Vibe
+
+---
+<!-- _class: lead -->
+<!--
 Who has picked up a project where it was just blank? I feel it's pretty common.
 -->
 
-# Who has worked on a project there were no seeds at all?
+# Who has worked on a project which had no seeds at all?
 
 👍
 
@@ -245,6 +270,11 @@ I'm going to show you a very cool trick I've started doing which I think is the 
 # Who has worked on a project they felt the seeds were well maintained?
 
 👍
+
+---
+<!-- _class: lead -->
+
+# Approaches To Seeding
 
 ---
 <!--
@@ -324,9 +354,9 @@ User.find_or_create_by!(email: 'admin@example.com') do |user|
   user.password = "12345678"
   user.password_confirmation = "12345678"
 
-  user.posts << Post.new(title: Faker::Job.title)
-  user.posts << Post.new(title: Faker::Job.title)
-  user.posts << Post.new(title: Faker::Job.title)
+  100.times do
+    user.posts << Post.new(title: Faker::Job.title)
+  end
 end if ENV['SEED_USER']
 ```
 
@@ -401,7 +431,7 @@ I've been really liking this approach, it makes me want to have really good fact
 ---
 <!-- footer: "" -->
 <!--
-But what if you're picking up a project where there is nothing?
+But what if you're picking up a project where there is nothing? Or the database is intense!
 
 Evil Martians have this pretty cool library for taking snapshots of user data & the relationships.
 
@@ -451,7 +481,6 @@ User.new(plan: Plan.premium).plan.display_adverts?
 ```
 
 ---
-
 <!--
 So what if we pulled all the data from that table & put it into a Struct
 Along with some helper methods
@@ -497,6 +526,10 @@ User.new(plan_id: 'premium').plan.display_adverts?
 # Outputs: false
 ```
 
+---
+<!-- _class: lead -->
+
+# Testing Seeds
 
 ---
 <!--
@@ -517,7 +550,7 @@ I seriously love this test in my code, it picks up some really random mistakes s
 RSpec.describe 'Rails.application' do
   describe '#load_seed' do
     subject { Rails.application.load_seed }
-    before { ENV['SEED_USER'] = 'true' }
+    before { ENV['SEED_USER'] = 'enabled' }
     after { ENV['SEED_USER'] = nil }
 
     it do
@@ -549,6 +582,7 @@ end
 ```
 
 ---
+<!-- _class: lead -->
 <!--
 How do you know when we've made good seeds?
 
@@ -562,6 +596,11 @@ How do you know if you've made good seeds?
 ---
 <!--
 Instead, look at measurable behaviour!
+
+- Developers touching prod is bad
+- Making problems obvious quickly is a win.
+- Are developers committing schema changes which aren't real!
+- This is more for Product Owners, but are they going to preview environments & looking at stuff? Or are they testing in prod?
 -->
 
 # What do good seeds look like?
@@ -572,19 +611,19 @@ Instead, look at measurable behaviour!
 - Are people reviewing code looking at preview environments?
 
 ---
+<!-- _class: lead -->
 <!--
 So what should we be doing?
 
 So you should be using seeds, they're a good foundation for any app.
 -->
 
-# What is the best way?
+# What do good seeds look like?
 
-- You should be able to run `rails db:seed` multiple times without fear, ideally using ENV's to decide what is seeded.
-- Use them in a preview environment! You'll be more incentivised to keep them up to date & fleshed out.
-- Plain Old Ruby Objects for data that needs to be consistent across all environments.
-- Using FactoryBot for Seeds makes testing easier.
-- Use partial anonymised dumps of production to investigate exceptions more closely.
+Confidence to run `bin/setup` every time a developer changes branch, be able to use them in preview environments.
+
+You can achieve this by a mix of PORO, Factories & partial anonymised dumps.
+Make sure you have some cheap tests in there.
 
 ---
 <!-- _class: lead -->
@@ -606,3 +645,5 @@ Then let me know how it goes!
 
 [MikeRogers.io](https://mikerogers.io/)
 @MikeRogers0 on Twitter
+
+[github.com/mikerogers0/talks](https://github.com/mikerogers0/talks)
